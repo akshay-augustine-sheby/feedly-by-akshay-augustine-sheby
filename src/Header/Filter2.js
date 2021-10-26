@@ -79,7 +79,7 @@ const Filter2 = () => {
                 checked={checkSports}
                 onChange={e => setCheckSports(e.target.checked)} 
             />
-            <NewsPreview news={national}/>
+            <NewsPreview cat="National News" news={national}/>
         
             
         </div>
