@@ -1,9 +1,15 @@
 import React,{useState,useEffect} from "react"
-const NewsPreview = () => {
+const NewsPreview = ({
+    news
+}
+) => {
     return(
         <div>
-            <NewsPreview />
-
+            {news.map((it)=>{
+                <div className="text-gray-800">
+                    {it.content}
+                </div>
+            })}
         </div>
     )
 }
