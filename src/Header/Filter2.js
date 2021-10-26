@@ -17,28 +17,32 @@ const Filter2 = () => {
             const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
             const dat = await res.json()
             
-            setData(dat["data"])
+            setData(dat)
             
 
             
         }
         fetchData("national")
-        setNational(data)
-        setData([])
-
         fetchData("world")
-        setWorld(data)
-        setData([])
-        
         fetchData("business")
-        setBusiness(data)
-        setData([])
-        
         fetchData("sports")
-        setSports(data)
-        setData([])
+        
     },[])
-    
+    useEffect(()=>{
+        console.log(data)
+        if(data.category==="national"){
+            setNational(data["data"])
+        }
+        else if(data.category==="world"){
+            setWorld(data["data"])
+        }
+        else if(data.category==="business"){
+            setWorld(data["data"])
+        }
+        else if(data.category==="sports"){
+            setWorld(data["data"])
+        }
+    },[data])
     const fetchAgain = async(category)=>{
             const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
             const dat = await res.json()
@@ -74,7 +78,8 @@ const Filter2 = () => {
                 checked={checkSports}
                 onChange={e => setCheckSports(e.target.checked)} 
             />
-            {national.map((it)=>(
+            {national!==[] &&
+            national.map((it)=>(
                 <div>
                     {it.content}
                 </div>
