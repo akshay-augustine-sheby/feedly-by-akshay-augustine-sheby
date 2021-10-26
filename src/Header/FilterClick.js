@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-import { Modal, Typography, Button } from "@bigbinary/neetoui/v2";
+import { Modal, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
 import { Filter } from "@bigbinary/neeto-icons";
 import Check from "./Check";
 const FilterClick= () => {
@@ -17,22 +17,24 @@ const FilterClick= () => {
                />
   
         <Modal isOpen={showModal} 
+                className="h-full ml-auto"
                 size="xs"
                 onClose={() => setShowModal(false)}>
           <Modal.Header>
-            <Typography style="h2">They're creepy & they're kooky</Typography>
+            <Typography style="h2">Filter Articles</Typography>
           </Modal.Header>
           <Modal.Body>
             <Typography style="body2" lineHeight="normal">
-              Somewhere out in space live The Herculoids! Zok, the laser-ray
-              dragon! Igoo, the giant rock ape! Tundro, the tremendous! Gloop and
-              Gleep, the formless, fearless wonders! With Zandor, their leader,
-              and his wife, Tara, and son, Dorno, they team up to protect their
-              planet from sinister invaders! All-strong! All-brave! All-heroes!
-              They're The Herculoids!
+              Category
             </Typography>
           </Modal.Body>
           <Modal.Footer className="space-x-2">
+            <Checkbox
+                checked
+                id="checkbox_name"
+                label="Trial"
+                
+            />
             <Button
               icon={Check}
               label="Continue"

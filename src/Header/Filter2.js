@@ -37,10 +37,10 @@ const Filter2 = () => {
             setWorld(data["data"])
         }
         else if(data.category==="business"){
-            setWorld(data["data"])
+            setBusiness(data["data"])
         }
         else if(data.category==="sports"){
-            setWorld(data["data"])
+            setSports(data["data"])
         }
     },[data])
     const fetchAgain = async(category)=>{
@@ -63,6 +63,7 @@ const Filter2 = () => {
                 }
                 } 
             />
+            
             <Check    
                 name="World"
                 checked={checkWorld}
@@ -78,15 +79,8 @@ const Filter2 = () => {
                 checked={checkSports}
                 onChange={e => setCheckSports(e.target.checked)} 
             />
-            {national!==[] &&
-            national.map((it)=>(
-                <div>
-                    {it.content}
-                </div>
-            )
-                
-            )
-        }
+            <NewsPreview news={national}/>
+        
             
         </div>
     )
