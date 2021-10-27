@@ -35,6 +35,7 @@ const NewsPreview = ({
                             {`${it.content.substring(0, MAX_LENGTH)}...`}
                         </div>
                         <div className="text-left text-indigo-600">
+                        <Link to={`/ArticlePage/${it.url}`}>Read more</Link>
                         <Button
                                 label="Read more"
                                 onClick={() => {}}
