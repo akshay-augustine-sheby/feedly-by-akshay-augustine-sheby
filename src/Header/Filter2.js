@@ -5,6 +5,7 @@ import FilterClick from "./FilterClick"
 import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
 import { Filter } from "@bigbinary/neeto-icons";
 import Header2 from "./Header2";
+import FilterEmpty from "./FilterEmpty";
 const Filter2 = () => {
     const [data,setData] = useState([])
     const [national,setNational] = useState([])
@@ -92,6 +93,11 @@ const Filter2 = () => {
             <NewsPreview cat="World" news={world} />
             <NewsPreview cat="Business" news={business} />
             <NewsPreview cat="Sports" news={sports} />
+            <FilterEmpty checkNational={checkNational}
+                        checkWorld={checkWorld}
+                        checkBusiness={checkBusiness}
+                        checkSports={checkSports}
+                         />
         
             
         </div>

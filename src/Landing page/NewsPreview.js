@@ -8,6 +8,7 @@ const NewsPreview = ({
     cat,
     news
 }) => {
+    if(news.length>0){
     return(
     <div className="px-36">
             <div className="text-xl text-left font-semibold">
@@ -18,6 +19,7 @@ const NewsPreview = ({
             {news.map((it,index)=>{
                 if(index===0){
                 return(
+                
                 <div className="py-6 flex gap-x-5">
                     <div className="w-full">
                         <img src="https://picsum.photos/526/263" alt="No image"/>
@@ -84,5 +86,7 @@ const NewsPreview = ({
             
     </div>
     )
+    }
+    else return(<div></div>)
 }
 export default NewsPreview;
