@@ -28,18 +28,20 @@ const NewsPreview = ({
                         <div className="text-lg text-left font-semibold">
                             {it.title}
                         </div>
-                        <div className="text-right text-xs">
+                        <div className="text-right text-xs text-gray-500 mb-5">
                             {it.author} at {it.time} on {it.date}    
                         </div>
                         <div className="text-left text-sm">
                             {`${it.content.substring(0, MAX_LENGTH)}...`}
                         </div>
                         <div className="text-left text-indigo-600">
-                        <Button
-                                label="Read more"
-                                onClick={() => {}}
-                                style="link"
-                            />
+                        <Link to={{
+                            pathname: `/ArticlePage/${it.title}`,
+                            state: {
+                                currentNews: {...it},
+                                newsData: news
+                            }
+                        }}>Read more</Link>
 
                         </div>
 
@@ -60,15 +62,17 @@ const NewsPreview = ({
                         <div className="text-xs text-left font-semibold">
                             {it.title}
                         </div>
-                        <div className="text-right text-xs">
+                        <div className="text-right text-xs text-gray-500 mb-5">
                             {it.author} at {it.time} on {it.date}    
                         </div>
                         <div className="text-left text-xs text-indigo-600">
-                        <Button
-                                label="Read more"
-                                onClick={() => {}}
-                                style="link"
-                            />
+                        <Link to={{
+                            pathname: `/ArticlePage/${it.title}`,
+                            state: {
+                                currentNews: {...it},
+                                newsData: news
+                            }
+                        }}>Read more</Link>
                         </div>
 
                     </div>      

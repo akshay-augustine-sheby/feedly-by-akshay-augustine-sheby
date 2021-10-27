@@ -8,9 +8,9 @@ import NewsPreview from './Landing page/NewsPreview';
 import ArticlePage from './ArticlePage/ArticlePage';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <App />
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 
