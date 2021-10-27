@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import Filter2 from "./Filter2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
 import { Button,Tooltip } from "@bigbinary/neetoui/v2";
 import { Filter,Notification,Search } from "@bigbinary/neeto-icons";
 import FilterClick from "./FilterClick";
+import Subscribe from "./Subscribe";
 const Header2 = ({
     showPane,
     setShowPane,
@@ -16,6 +17,7 @@ const Header2 = ({
     checkSports,
     setCheckSports
 }) => {
+    const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
     return(
         <div>
             <div className="px-6 h-auto border-b">
@@ -40,12 +42,15 @@ const Header2 = ({
                         placement="bottom"
                         >
                         <Button
-                            onClick={function noRefCheck(){}}
+                            onClick={() => setShowModalExtraSmall(true)}
                             size="large"
                             style="text"
                             icon={Notification}
                         />
                     </Tooltip>
+                    <Subscribe 
+                            showModalExtraSmall={showModalExtraSmall}
+                            setShowModalExtraSmall={setShowModalExtraSmall} />
                     <div className="space-y-6">
                         <div className="w-1/2 space-y-8">
                             <div className="flex flex-row items-center justify-start space-x-6">
