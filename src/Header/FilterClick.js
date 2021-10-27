@@ -3,6 +3,8 @@ import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
 import { Filter } from "@bigbinary/neeto-icons";
 import Check from "./Check";
 const FilterClick= ({
+    showPane,
+    setShowPane,
     checkNational,
     setCheckNational,
     checkWorld,
@@ -12,23 +14,10 @@ const FilterClick= ({
     checkSports,
     setCheckSports
 }) => {
-    const [showPane, setShowPane] = useState(false);
+    
     return (
       <div className="w-full">
-        <div className="space-y-6">
-          <div className="w-1/2 space-y-8">
-            <div className="flex flex-row items-center justify-start space-x-6">
-              <Button
-              iconPosition="right"
-              size="large"
-              label="Filter"
-              icon={Filter}
-              onClick={() => setShowPane(true)}
-              style="secondary"
-               />
-            </div>
-          </div>
-        </div>
+        
   
         <Pane isOpen={showPane} onClose={() => setShowPane(false)}>
           <Pane.Header>
@@ -40,14 +29,6 @@ const FilterClick= ({
             <Typography style="body2">
             Category
             </Typography>
-          </Pane.Body>
-          <Pane.Footer className="flex items-center space-x-2">
-            <Checkbox
-                checked
-                id="checkbox_name"
-                label="Trial"
-                
-            />
             <Check    
                 name="National"
                 checked={checkNational}
@@ -71,6 +52,14 @@ const FilterClick= ({
                 name="Sports"
                 checked={checkSports}
                 onChange={e => setCheckSports(e.target.checked)} 
+            />
+          </Pane.Body>
+          <Pane.Footer className="flex items-center space-x-2">
+            <Checkbox
+                checked
+                id="checkbox_name"
+                label="Trial"
+                
             />
             <Button
               icon={Check}

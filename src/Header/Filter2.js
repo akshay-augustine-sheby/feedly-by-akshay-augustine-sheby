@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import NewsPreview from "../Landing page/NewsPreview"
 import Check from "./Check"
 import FilterClick from "./FilterClick"
+import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
+import { Filter } from "@bigbinary/neeto-icons";
+import Header2 from "./Header2";
 const Filter2 = () => {
     const [data,setData] = useState([])
     const [national,setNational] = useState([])
@@ -12,6 +15,7 @@ const Filter2 = () => {
     const [checkWorld,setCheckWorld] = useState(true)
     const [checkBusiness, setCheckBusiness] = useState(true)
     const [checkSports, setCheckSports] = useState(true)
+    const [showPane, setShowPane] = useState(false);
 
     useEffect(()=>{
         const fetchData = async(category)=>{
@@ -73,44 +77,17 @@ const Filter2 = () => {
 
     return(
         <div>
-            <FilterClick 
-                    checkNational={checkNational}
-                    setCheckNational={setCheckNational}
-                    checkWorld={checkWorld}
-                    setCheckWorld={setCheckWorld}
-                    checkBusiness={checkBusiness}
-                    setCheckBusiness={setCheckBusiness}
-                    checkSports={checkSports}
-                    setCheckSports={setCheckSports}
-
-
-
-            />
-            
-            <Check    
-                name="National"
-                checked={checkNational}
-                onChange={e => {
-                    setCheckNational(e.target.checked)
-                }
-                } 
-            />
-            
-            <Check    
-                name="World"
-                checked={checkWorld}
-                onChange={e => setCheckWorld(e.target.checked)} 
-            />
-            <Check    
-                name="Business"
-                checked={checkBusiness}
-                onChange={e => setCheckBusiness(e.target.checked)} 
-            />
-            <Check    
-                name="Sports"
-                checked={checkSports}
-                onChange={e => setCheckSports(e.target.checked)} 
-            />
+            <Header2 
+                            showPane={showPane}
+                            setShowPane={setShowPane}
+                            checkNational={checkNational}
+                            setCheckNational={setCheckNational}
+                            checkWorld={checkWorld}
+                            setCheckWorld={setCheckWorld}
+                            checkBusiness={checkBusiness}
+                            setCheckBusiness={setCheckBusiness}
+                            checkSports={checkSports}
+                            setCheckSports={setCheckSports}/>
             <NewsPreview cat="National" news={national} />
             <NewsPreview cat="World" news={world} />
             <NewsPreview cat="Business" news={business} />
