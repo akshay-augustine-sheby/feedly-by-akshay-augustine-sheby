@@ -7,8 +7,8 @@ import FilterClick from "./FilterClick";
 const Header2 = () => {
     return(
         <div>
-            <div className="px-6 drop shadow">
-            <Header 
+            <div className="px-6 h-auto border-b">
+            <Header
                 actionBlock={
                 <div className="flex">
                     <Tooltip

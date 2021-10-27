@@ -29,7 +29,7 @@ const Filter2 = () => {
         
     },[])
     useEffect(()=>{
-        console.log(data)
+        //console.log(data)
         if(data.category==="national"){
             setNational(data["data"])
         }
@@ -43,6 +43,8 @@ const Filter2 = () => {
             setSports(data["data"])
         }
     },[data])
+    let n1 = national[Math.floor(Math.random()*national.length)]
+    //console.log(n1.content)
     const fetchAgain = async(category)=>{
             const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
             const dat = await res.json()
@@ -51,6 +53,7 @@ const Filter2 = () => {
 
     return(
         <div>
+            
             <Check    
                 name="National"
                 checked={checkNational}
@@ -79,7 +82,10 @@ const Filter2 = () => {
                 checked={checkSports}
                 onChange={e => setCheckSports(e.target.checked)} 
             />
-            <NewsPreview cat="National News" news={national}/>
+            <NewsPreview cat="National" news={national} />
+            <NewsPreview cat="World" news={world} />
+            <NewsPreview cat="Business" news={business} />
+            <NewsPreview cat="Sports" news={sports} />
         
             
         </div>
