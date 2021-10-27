@@ -28,10 +28,10 @@ const NewsPreview = ({
                         <div className="text-lg text-left font-semibold">
                             {it.title}
                         </div>
-                        <div className="text-right">
+                        <div className="text-right text-xs">
                             {it.author} at {it.time} on {it.date}    
                         </div>
-                        <div className="text-left">
+                        <div className="text-left text-sm">
                             {`${it.content.substring(0, MAX_LENGTH)}...`}
                         </div>
                         <div className="text-left text-indigo-600">
