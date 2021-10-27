@@ -5,9 +5,7 @@ const Routes = () => {
     return(
         <div>
             <Switch>
-                <Route path="/ArticlePage/:url" exact>
-                    <ArticlePage />
-                </Route>
+                <Route path="/ArticlePage/:title" component={ArticlePage} />
             </Switch>
             
         </div>
