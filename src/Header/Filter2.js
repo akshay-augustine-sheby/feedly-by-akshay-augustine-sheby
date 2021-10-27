@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import NewsPreview from "../Landing page/NewsPreview"
 import Check from "./Check"
+import FilterClick from "./FilterClick"
 const Filter2 = () => {
     const [data,setData] = useState([])
     const [national,setNational] = useState([])
@@ -43,26 +44,54 @@ const Filter2 = () => {
             setSports(data["data"])
         }
     },[data])
-    let n1 = national[Math.floor(Math.random()*national.length)]
-    //console.log(n1.content)
+    useEffect(()=>{
+        if(checkNational===false) setNational([])
+        else {
+            fetchAgain("national")
+        }
+        if(checkWorld===false) setWorld([])
+        else {
+            fetchAgain("world")
+        }
+        if(checkBusiness===false) setBusiness([])
+        else {
+            fetchAgain("business")
+        }
+        if(checkSports===false) setSports([])
+        else {
+            fetchAgain("sports")
+        }
+
+
+    },[checkNational,checkWorld,checkBusiness,checkSports])
+
     const fetchAgain = async(category)=>{
             const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
             const dat = await res.json()
-            return dat["data"]
+            setData(dat)
         }
 
     return(
         <div>
+            <FilterClick 
+                    checkNational={checkNational}
+                    setCheckNational={setCheckNational}
+                    checkWorld={checkWorld}
+                    setCheckWorld={setCheckWorld}
+                    checkBusiness={checkBusiness}
+                    setCheckBusiness={setCheckBusiness}
+                    checkSports={checkSports}
+                    setCheckSports={setCheckSports}
+
+
+
+            />
             
             <Check    
                 name="National"
                 checked={checkNational}
                 onChange={e => {
                     setCheckNational(e.target.checked)
-                    if(checkNational===false) setNational([])
-                    else {
-                        setNational(fetchAgain("national"))
-                    }
                 }
                 } 
             />

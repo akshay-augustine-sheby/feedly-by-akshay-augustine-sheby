@@ -1,11 +1,11 @@
 import './App.css';
-import LandingPage from "./Landing page/index"
-import Header from './Header/Header2';
+import Header2 from './Header/Header2';
+import LandingPage from './Landing page';
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Header2 />
       <LandingPage/>
     </div>
   );

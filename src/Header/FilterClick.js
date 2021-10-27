@@ -1,54 +1,91 @@
 import React,{useState} from "react"
-import { Modal, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
+import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
 import { Filter } from "@bigbinary/neeto-icons";
 import Check from "./Check";
-const FilterClick= () => {
-    const [showModal, setShowModal] = useState(false);
-  
+const FilterClick= ({
+    checkNational,
+    setCheckNational,
+    checkWorld,
+    setCheckWorld,
+    checkBusiness,
+    setCheckBusiness,
+    checkSports,
+    setCheckSports
+}) => {
+    const [showPane, setShowPane] = useState(false);
     return (
-      <div>
-            <Button
+      <div className="w-full">
+        <div className="space-y-6">
+          <div className="w-1/2 space-y-8">
+            <div className="flex flex-row items-center justify-start space-x-6">
+              <Button
               iconPosition="right"
               size="large"
               label="Filter"
               icon={Filter}
-              onClick={() => setShowModal(true)}
+              onClick={() => setShowPane(true)}
               style="secondary"
                />
+            </div>
+          </div>
+        </div>
   
-        <Modal isOpen={showModal} 
-                className="h-full ml-auto"
-                size="xs"
-                onClose={() => setShowModal(false)}>
-          <Modal.Header>
-            <Typography style="h2">Filter Articles</Typography>
-          </Modal.Header>
-          <Modal.Body>
-            <Typography style="body2" lineHeight="normal">
-              Category
+        <Pane isOpen={showPane} onClose={() => setShowPane(false)}>
+          <Pane.Header>
+            <Typography style="h2" weight="semibold">
+            Filter Articles
             </Typography>
-          </Modal.Body>
-          <Modal.Footer className="space-x-2">
+          </Pane.Header>
+          <Pane.Body>
+            <Typography style="body2">
+            Category
+            </Typography>
+          </Pane.Body>
+          <Pane.Footer className="flex items-center space-x-2">
             <Checkbox
                 checked
                 id="checkbox_name"
                 label="Trial"
                 
             />
+            <Check    
+                name="National"
+                checked={checkNational}
+                onChange={e => {
+                    setCheckNational(e.target.checked)
+                }
+                } 
+            />
+            
+            <Check    
+                name="World"
+                checked={checkWorld}
+                onChange={e => setCheckWorld(e.target.checked)} 
+            />
+            <Check    
+                name="Business"
+                checked={checkBusiness}
+                onChange={e => setCheckBusiness(e.target.checked)} 
+            />
+            <Check    
+                name="Sports"
+                checked={checkSports}
+                onChange={e => setCheckSports(e.target.checked)} 
+            />
             <Button
               icon={Check}
-              label="Continue"
-              onClick={() => setShowModal(false)}
               size="large"
+              label="Continue"
+              onClick={() => setShowPane(false)}
             />
             <Button
               style="text"
-              label="Cancel"
-              onClick={() => setShowModal(false)}
               size="large"
+              label="Cancel"
+              onClick={() => setShowPane(false)}
             />
-          </Modal.Footer>
-        </Modal>
+          </Pane.Footer>
+        </Pane>
       </div>
     );
   }

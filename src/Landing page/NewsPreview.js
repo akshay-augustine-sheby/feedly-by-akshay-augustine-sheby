@@ -1,6 +1,6 @@
 import React from "react"
 import { Button } from "@bigbinary/neetoui/v2";
-import history from "../history";
+import { Link } from "react-router-dom";
 const MAX_LENGTH=300
 
 
@@ -13,7 +13,7 @@ const NewsPreview = ({
             <div className="text-xl text-left font-semibold">
                 {`${cat} News`}
             </div>
-        <div>
+            <div>
             
             {news.map((it,index)=>{
                 if(index===0){
@@ -34,10 +34,11 @@ const NewsPreview = ({
                         </div>
                         <div className="text-left text-indigo-600">
                         <Button
-                            label="Read more"
-                            onClick={() => history.push('/ArticlePage')}
-                            style="link"
-                        />
+                                label="Read more"
+                                onClick={() => {}}
+                                style="link"
+                            />
+
                         </div>
 
                     </div>      
@@ -60,10 +61,10 @@ const NewsPreview = ({
                         <div className="text-right text-xs">
                             {it.author} at {it.time} on {it.date}    
                         </div>
-                        <div className="text-left text-xs">
-                            <Button
+                        <div className="text-left text-xs text-indigo-600">
+                        <Button
                                 label="Read more"
-                                onClick={() => history.push('/ArticlePage')}
+                                onClick={() => {}}
                                 style="link"
                             />
                         </div>
