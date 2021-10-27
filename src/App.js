@@ -1,11 +1,11 @@
 import './App.css';
-import LandingPage from "./Landing page/index"
-import Header from './Header/Header2';
+import Filter2 from './Header/Filter2';
+import LandingPage from './Landing page';
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Filter2 />
       <LandingPage/>
     </div>
   );

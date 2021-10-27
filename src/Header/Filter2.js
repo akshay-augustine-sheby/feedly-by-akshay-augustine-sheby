@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react"
 import NewsPreview from "../Landing page/NewsPreview"
 import Check from "./Check"
+import FilterClick from "./FilterClick"
+import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
+import { Filter } from "@bigbinary/neeto-icons";
+import Header2 from "./Header2";
+import FilterEmpty from "./FilterEmpty";
 const Filter2 = () => {
     const [data,setData] = useState([])
     const [national,setNational] = useState([])
@@ -11,6 +16,7 @@ const Filter2 = () => {
     const [checkWorld,setCheckWorld] = useState(true)
     const [checkBusiness, setCheckBusiness] = useState(true)
     const [checkSports, setCheckSports] = useState(true)
+    const [showPane, setShowPane] = useState(false);
 
     useEffect(()=>{
         const fetchData = async(category)=>{
@@ -29,7 +35,7 @@ const Filter2 = () => {
         
     },[])
     useEffect(()=>{
-        console.log(data)
+        //console.log(data)
         if(data.category==="national"){
             setNational(data["data"])
         }
@@ -43,43 +49,55 @@ const Filter2 = () => {
             setSports(data["data"])
         }
     },[data])
+    useEffect(()=>{
+        if(checkNational===false) setNational([])
+        else {
+            fetchAgain("national")
+        }
+        if(checkWorld===false) setWorld([])
+        else {
+            fetchAgain("world")
+        }
+        if(checkBusiness===false) setBusiness([])
+        else {
+            fetchAgain("business")
+        }
+        if(checkSports===false) setSports([])
+        else {
+            fetchAgain("sports")
+        }
+
+
+    },[checkNational,checkWorld,checkBusiness,checkSports])
+
     const fetchAgain = async(category)=>{
             const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
             const dat = await res.json()
-            return dat["data"]
+            setData(dat)
         }
 
     return(
         <div>
-            <Check    
-                name="National"
-                checked={checkNational}
-                onChange={e => {
-                    setCheckNational(e.target.checked)
-                    if(checkNational===false) setNational([])
-                    else {
-                        setNational(fetchAgain("national"))
-                    }
-                }
-                } 
-            />
-            
-            <Check    
-                name="World"
-                checked={checkWorld}
-                onChange={e => setCheckWorld(e.target.checked)} 
-            />
-            <Check    
-                name="Business"
-                checked={checkBusiness}
-                onChange={e => setCheckBusiness(e.target.checked)} 
-            />
-            <Check    
-                name="Sports"
-                checked={checkSports}
-                onChange={e => setCheckSports(e.target.checked)} 
-            />
-            <NewsPreview cat="National News" news={national}/>
+            <Header2 
+                            showPane={showPane}
+                            setShowPane={setShowPane}
+                            checkNational={checkNational}
+                            setCheckNational={setCheckNational}
+                            checkWorld={checkWorld}
+                            setCheckWorld={setCheckWorld}
+                            checkBusiness={checkBusiness}
+                            setCheckBusiness={setCheckBusiness}
+                            checkSports={checkSports}
+                            setCheckSports={setCheckSports}/>
+            <NewsPreview cat="National" news={national} />
+            <NewsPreview cat="World" news={world} />
+            <NewsPreview cat="Business" news={business} />
+            <NewsPreview cat="Sports" news={sports} />
+            <FilterEmpty checkNational={checkNational}
+                        checkWorld={checkWorld}
+                        checkBusiness={checkBusiness}
+                        checkSports={checkSports}
+                         />
         
             
         </div>

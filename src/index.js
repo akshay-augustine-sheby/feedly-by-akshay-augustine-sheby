@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NewsPreview from './Landing page/NewsPreview';
+import ArticlePage from './ArticlePage/ArticlePage';
 
 ReactDOM.render(
   <React.StrictMode>
