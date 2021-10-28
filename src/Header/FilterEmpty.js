@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Button } from "@bigbinary/neetoui/v2";
 import { Edit } from "@bigbinary/neeto-icons";
+import WriteUs from "../Components/WriteUs";
 const FilterEmpty = ({
     checkNational,
     checkWorld,
@@ -8,6 +9,8 @@ const FilterEmpty = ({
     checkSports,
 }) => {
     const [data,setData] = useState([])
+    const [showModalMedium, setShowModalMedium] = useState(false);
+
     useEffect(()=>{
         const fetchAgain = async()=>{
             const res = await fetch("https://inshortsapi.vercel.app/news?category=national")
@@ -31,8 +34,12 @@ const FilterEmpty = ({
                 size="large"
                 label="Write to us"
                 icon={Edit}
-                onClick={() => {}}
+                onClick={() => setShowModalMedium(true)}
                 style="secondary"
+            />
+            <WriteUs 
+                showModalMedium={showModalMedium}
+                setShowModalMedium={setShowModalMedium}
             />
             </div>
             <div className="grid grid-cols-2 justify-between gap-x-72">

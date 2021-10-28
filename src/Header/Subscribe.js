@@ -17,7 +17,7 @@ const Subscribe = ({
         setValue('')
     }
     return(
-        <div>
+<div>
     <Modal
         isOpen={showModalExtraSmall}
         onClose={() => setShowModalExtraSmall(false)}
@@ -57,8 +57,7 @@ const Subscribe = ({
           />
         </Modal.Footer>
     </Modal>
-            
-        </div>
+</div>
     )
 }
 export default Subscribe;
