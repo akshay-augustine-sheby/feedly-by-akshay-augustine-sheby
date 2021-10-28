@@ -6,6 +6,7 @@ import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
 import { Filter } from "@bigbinary/neeto-icons";
 import Header2 from "./Header2";
 import FilterEmpty from "./FilterEmpty";
+export const FunContext = React.createContext();
 const Filter2 = () => {
     const [data,setData] = useState([])
     const [national,setNational] = useState([])
@@ -16,7 +17,19 @@ const Filter2 = () => {
     const [checkWorld,setCheckWorld] = useState(true)
     const [checkBusiness, setCheckBusiness] = useState(true)
     const [checkSports, setCheckSports] = useState(true)
-    const [showPane, setShowPane] = useState(false);
+    const [showPane, setShowPane] = useState(false)
+
+    localStorage.setItem("national",JSON.stringify(national))
+    localStorage.setItem("world",JSON.stringify(world))
+    localStorage.setItem("business",JSON.stringify(business))
+    localStorage.setItem("sports",JSON.stringify(sports))
+
+    localStorage.setItem("checkNational",JSON.stringify(checkNational))
+    localStorage.setItem("checkWorld",JSON.stringify(checkWorld))
+    localStorage.setItem("checkBusiness",JSON.stringify(checkBusiness))
+    localStorage.setItem("checkSports",JSON.stringify(checkSports))
+
+    
 
     useEffect(()=>{
         const fetchData = async(category)=>{
@@ -50,6 +63,7 @@ const Filter2 = () => {
         }
     },[data])
     useEffect(()=>{
+
         if(checkNational===false) setNational([])
         else {
             fetchAgain("national")
@@ -67,6 +81,7 @@ const Filter2 = () => {
             fetchAgain("sports")
         }
 
+    
 
     },[checkNational,checkWorld,checkBusiness,checkSports])
 
@@ -78,27 +93,27 @@ const Filter2 = () => {
 
     return(
         <div>
+            <FunContext.Provider value={{setShowPane, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports}}>
             <Header2 
-                            showPane={showPane}
-                            setShowPane={setShowPane}
-                            checkNational={checkNational}
-                            setCheckNational={setCheckNational}
-                            checkWorld={checkWorld}
-                            setCheckWorld={setCheckWorld}
-                            checkBusiness={checkBusiness}
-                            setCheckBusiness={setCheckBusiness}
-                            checkSports={checkSports}
-                            setCheckSports={setCheckSports}/>
-            <NewsPreview cat="National" news={national} />
-            <NewsPreview cat="World" news={world} />
-            <NewsPreview cat="Business" news={business} />
-            <NewsPreview cat="Sports" news={sports} />
+                    showPane={showPane}
+                            />
+            <NewsPreview cat="National" news={national} 
+                            showPane={showPane} />
+            <NewsPreview cat="World" news={world} 
+                           showPane={showPane}
+                           />
+            <NewsPreview cat="Business" news={business} 
+                           showPane={showPane}
+                           />
+            <NewsPreview cat="Sports" news={sports} 
+                           showPane={showPane}
+                           />
             <FilterEmpty checkNational={checkNational}
                         checkWorld={checkWorld}
                         checkBusiness={checkBusiness}
                         checkSports={checkSports}
                          />
-        
+            </FunContext.Provider>
             
         </div>
     )

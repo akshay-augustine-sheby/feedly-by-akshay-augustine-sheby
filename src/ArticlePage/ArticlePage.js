@@ -1,17 +1,31 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "@bigbinary/neetoui/v2";
+import Header2 from "../Header/Header2";
+import { FunContext } from "../Header/Filter2";
+import { Copy } from "@bigbinary/neeto-icons";
 const ArticlePage = () => {
     const {title} = useParams();
     const location = useLocation();
-    const { currentNews, newsData } = location.state
+    const { currentNews, newsData, showPane } = location.state
+    
+
+    
     //console.log(title)
     return(
+        
         <div className="px-36">
             <div className="py-6 flex-col">
                     <div className="text-4xl text-left font-semibold mb-3">
                             {currentNews.title}
+                            <Button
+                            onClick={() => navigator.clipboard.writeText(currentNews.readMoreUrl)}
+                            size="large"
+                            style="text"
+                            icon={Copy}
+                        />
                     </div>
+                    
                     <div className="text-left text-xs text-gray-500 mb-5">
                             {currentNews.author} at {currentNews.time} on {currentNews.date}    
                     </div>
@@ -46,7 +60,8 @@ const ArticlePage = () => {
                             pathname: `/ArticlePage/${it.title}`,
                             state: {
                                 currentNews: {...it},
-                                newsData: newsData
+                                newsData: newsData,
+                                showPane: showPane
                             }
                         }}>Read more</Link>
                         </div>

@@ -1,13 +1,23 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Button } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
+import { FunContext } from "../Header/Filter2";
 const MAX_LENGTH=300
 
 
 const NewsPreview = ({
     cat,
-    news
+    news,
+    showPane
 }) => {
+    
+    /*console.log(JSON.stringify(setShowPane))
+    const setShowPane2 = JSON.parse(JSON.stringify(setShowPane))
+    const setCheckNational2 = JSON.parse(JSON.stringify(setCheckNational))
+    const setCheckWorld2 = JSON.parse(JSON.stringify(setCheckWorld))
+    const setCheckBusiness2 = JSON.parse(JSON.stringify(setCheckBusiness))
+    const setCheckSports2 = JSON.parse(JSON.stringify(setCheckSports))   
+    */
     if(news.length>0){
     return(
     <div className="px-36">
@@ -39,7 +49,8 @@ const NewsPreview = ({
                             pathname: `/ArticlePage/${it.title}`,
                             state: {
                                 currentNews: {...it},
-                                newsData: news
+                                newsData: news,
+                                showPane: showPane
                             }
                         }}>Read more</Link>
 
@@ -70,7 +81,8 @@ const NewsPreview = ({
                             pathname: `/ArticlePage/${it.title}`,
                             state: {
                                 currentNews: {...it},
-                                newsData: news
+                                newsData: news,
+                                showPane: showPane
                             }
                         }}>Read more</Link>
                         </div>
