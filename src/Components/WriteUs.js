@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Modal,Button,Typography,Input, Textarea } from "@bigbinary/neetoui/v2";
-import { Check } from "@bigbinary/neeto-icons";
+import axios from "axios";
 const WriteUs = ({
     showModalMedium,
     setShowModalMedium
@@ -8,6 +8,19 @@ const WriteUs = ({
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [text, setText] = useState('')
+    const handleWriteUs = () => {
+        setShowModalMedium(false)
+        axios.post('https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a',{
+            name: name,
+            email: email,
+            message: text
+        })
+            .then((response)=>console.log(response))
+            .catch((error)=> console.log(error))
+        setName('')
+        setEmail('')
+        setText('')
+    }
     return(
 <div>
     <Modal
@@ -58,7 +71,7 @@ const WriteUs = ({
           <Button
             size="large"
             label="Submit"
-            onClick={() => setShowModalMedium(false)}
+            onClick={() => handleWriteUs()}
           />
           <Button
             style="text"
