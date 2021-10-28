@@ -24,7 +24,6 @@ const Header2 = ({
                 
                 actionBlock={
                 <div className="flex">
-                    <Link to = "/">Feed</Link>
                     <Tooltip
                         content="Search"
                         followCursor="horizontal"

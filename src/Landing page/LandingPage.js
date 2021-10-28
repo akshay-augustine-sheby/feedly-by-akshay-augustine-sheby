@@ -97,6 +97,7 @@ const LandingPage = () => {
             <Header2 
                     showPane={showPane}
                             />
+            <div className="mt-11">
             <NewsPreview cat="National" news={national} 
                             showPane={showPane} />
             <NewsPreview cat="World" news={world} 
@@ -113,6 +114,7 @@ const LandingPage = () => {
                         checkBusiness={checkBusiness}
                         checkSports={checkSports}
                          />
+            </div>
             </FunContext.Provider>
             
         </div>
