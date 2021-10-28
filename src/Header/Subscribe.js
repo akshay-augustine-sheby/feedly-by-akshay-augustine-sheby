@@ -1,12 +1,21 @@
-import React from "react"
+import React, { useState } from "react"
 import { Modal,Button,Typography,Input } from "@bigbinary/neetoui/v2";
 import { Check } from "@bigbinary/neeto-icons";
+import axios from 'axios'
+import { setNestedObjectValues } from "formik";
 const Subscribe = ({
     showModalExtraSmall,
     setShowModalExtraSmall
 
 }) => {
-    
+    const [value, setValue] = useState('')
+    const handleSubscribe = () => {
+        setShowModalExtraSmall(false)
+        axios.post('https://webhook.site/9f54337a-cb5f-43e8-bb10-6caa824fb55a',value)
+            .then((response)=>console.log(response))
+            .catch((error)=> console.log(error))
+        setValue('')
+    }
     return(
         <div>
     <Modal
@@ -26,17 +35,19 @@ const Subscribe = ({
               contentSize={0}
               id="email"
               label=""
+              value={value}
               placeholder="oliver@example.com"
               size="small"
               type="email"
+              onChange={(e)=>setValue(e.target.value)}
             />
-            
+
         </Modal.Body>
         <Modal.Footer className="space-x-2">
           <Button
             size="large"
             label="Sign Up"
-            onClick={() => setShowModalExtraSmall(false)}
+            onClick={() => handleSubscribe()}
           />
           <Button
             style="text"
