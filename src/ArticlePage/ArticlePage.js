@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "@bigbinary/neetoui/v2";
 import Header2 from "../Header/Header2";
-import { FunContext } from "../Header/Filter2";
+import { FunContext } from "../Landing page/LandingPage";
 import { Copy } from "@bigbinary/neeto-icons";
 const ArticlePage = () => {
     const {title} = useParams();

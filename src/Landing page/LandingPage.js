@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react"
-import NewsPreview from "../Landing page/NewsPreview"
-import Check from "./Check"
-import FilterClick from "./FilterClick"
+import NewsPreview from "./NewsPreview"
+import Check from "../Header/Check"
+import FilterClick from "../Header/FilterClick"
 import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
 import { Filter } from "@bigbinary/neeto-icons";
-import Header2 from "./Header2";
+import Header2 from "../Header/Header2";
 import FilterEmpty from "./FilterEmpty";
 export const FunContext = React.createContext();
-const Filter2 = () => {
+const LandingPage = () => {
     const [data,setData] = useState([])
     const [national,setNational] = useState([])
     const [world,setWorld] = useState([])
@@ -118,4 +118,4 @@ const Filter2 = () => {
         </div>
     )
 }
-export default Filter2;
+export default LandingPage;

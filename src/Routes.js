@@ -1,8 +1,8 @@
 import React from "react"
 import { Route, Switch } from "react-router"
 import ArticlePage from "./ArticlePage/ArticlePage"
-import Filter2 from "./Header/Filter2"
-import LandingPage from "./Landing page"
+import LandingPage from "./Landing page/LandingPage"
+
 const Routes = () => {
     return(
         <div>

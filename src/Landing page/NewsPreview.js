@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { Button } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
-import { FunContext } from "../Header/Filter2";
+import { FunContext } from "./LandingPage";
 const MAX_LENGTH=300
 
 
