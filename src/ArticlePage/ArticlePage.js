@@ -14,8 +14,6 @@ const ArticlePage = () => {
     return(
         
         <div className="px-36">
-            <Header2 
-            showPane={showPane}/>
             <div className="py-6 flex-col">
                     <div className="text-4xl text-left font-semibold mb-3">
                             {currentNews.title}
@@ -54,7 +52,8 @@ const ArticlePage = () => {
                             pathname: `/ArticlePage/${it.title}`,
                             state: {
                                 currentNews: {...it},
-                                newsData: newsData
+                                newsData: newsData,
+                                showPane: showPane
                             }
                         }}>Read more</Link>
                         </div>

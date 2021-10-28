@@ -95,7 +95,7 @@ const Filter2 = () => {
         <div>
             <FunContext.Provider value={{setShowPane, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports}}>
             <Header2 
-                            showPane={showPane}
+                    showPane={showPane}
                             />
             <NewsPreview cat="National" news={national} 
                             showPane={showPane} />

@@ -81,7 +81,8 @@ const NewsPreview = ({
                             pathname: `/ArticlePage/${it.title}`,
                             state: {
                                 currentNews: {...it},
-                                newsData: news
+                                newsData: news,
+                                showPane: showPane
                             }
                         }}>Read more</Link>
                         </div>
