@@ -18,6 +18,18 @@ const Filter2 = () => {
     const [checkSports, setCheckSports] = useState(true)
     const [showPane, setShowPane] = useState(false);
 
+    localStorage.setItem("national",JSON.stringify(national))
+    localStorage.setItem("world",JSON.stringify(world))
+    localStorage.setItem("business",JSON.stringify(business))
+    localStorage.setItem("sports",JSON.stringify(sports))
+
+    localStorage.setItem("checkNational",JSON.stringify(checkNational))
+    localStorage.setItem("checkWorld",JSON.stringify(checkWorld))
+    localStorage.setItem("checkBusiness",JSON.stringify(checkBusiness))
+    localStorage.setItem("checkSports",JSON.stringify(checkSports))
+
+    console.log(setShowPane.toString())
+
     useEffect(()=>{
         const fetchData = async(category)=>{
             const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
@@ -50,6 +62,7 @@ const Filter2 = () => {
         }
     },[data])
     useEffect(()=>{
+
         if(checkNational===false) setNational([])
         else {
             fetchAgain("national")
@@ -67,6 +80,7 @@ const Filter2 = () => {
             fetchAgain("sports")
         }
 
+    
 
     },[checkNational,checkWorld,checkBusiness,checkSports])
 
@@ -81,18 +95,42 @@ const Filter2 = () => {
             <Header2 
                             showPane={showPane}
                             setShowPane={setShowPane}
-                            checkNational={checkNational}
+                            
                             setCheckNational={setCheckNational}
-                            checkWorld={checkWorld}
+                            
                             setCheckWorld={setCheckWorld}
-                            checkBusiness={checkBusiness}
+                            
                             setCheckBusiness={setCheckBusiness}
-                            checkSports={checkSports}
+                            
                             setCheckSports={setCheckSports}/>
-            <NewsPreview cat="National" news={national} />
-            <NewsPreview cat="World" news={world} />
-            <NewsPreview cat="Business" news={business} />
-            <NewsPreview cat="Sports" news={sports} />
+            <NewsPreview cat="National" news={national} 
+                            showPane={showPane}
+                            setShowPane={setShowPane}
+                            setCheckNational={setCheckNational}
+                            setCheckWorld={setCheckWorld}
+                            setCheckBusiness={setCheckBusiness}
+                            setCheckSports={setCheckSports}/>
+            <NewsPreview cat="World" news={world} 
+                           showPane={showPane}
+                           setShowPane={setShowPane}
+                           setCheckNational={setCheckNational}
+                           setCheckWorld={setCheckWorld}
+                           setCheckBusiness={setCheckBusiness}
+                           setCheckSports={setCheckSports}/>
+            <NewsPreview cat="Business" news={business} 
+                           showPane={showPane}
+                           setShowPane={setShowPane}
+                           setCheckNational={setCheckNational}
+                           setCheckWorld={setCheckWorld}
+                           setCheckBusiness={setCheckBusiness}
+                           setCheckSports={setCheckSports}/>
+            <NewsPreview cat="Sports" news={sports} 
+                           showPane={showPane}
+                           setShowPane={setShowPane}
+                           setCheckNational={setCheckNational}
+                           setCheckWorld={setCheckWorld}
+                           setCheckBusiness={setCheckBusiness}
+                           setCheckSports={setCheckSports}/>
             <FilterEmpty checkNational={checkNational}
                         checkWorld={checkWorld}
                         checkBusiness={checkBusiness}

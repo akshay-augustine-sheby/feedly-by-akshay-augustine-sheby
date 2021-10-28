@@ -8,15 +8,16 @@ import Subscribe from "./Subscribe";
 const Header2 = ({
     showPane,
     setShowPane,
-    checkNational,
     setCheckNational,
-    checkWorld,
     setCheckWorld,
-    checkBusiness,
     setCheckBusiness,
-    checkSports,
     setCheckSports
 }) => {
+    const checkNational = JSON.parse(localStorage.getItem("checkNational"))
+    const checkWorld = JSON.parse(localStorage.getItem("checkWorld"))
+    const checkBusiness = JSON.parse(localStorage.getItem("checkBusiness"))
+    const checkSports = JSON.parse(localStorage.getItem("checkSports"))
+
     const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
     return(
         <div>

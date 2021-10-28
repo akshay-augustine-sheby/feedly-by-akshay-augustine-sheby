@@ -1,13 +1,30 @@
 import React from "react"
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "@bigbinary/neetoui/v2";
+import Header2 from "../Header/Header2";
 const ArticlePage = () => {
     const {title} = useParams();
     const location = useLocation();
-    const { currentNews, newsData } = location.state
+    const { currentNews, newsData, 
+        showPane,
+        setShowPane,
+        setCheckNational,
+        setCheckWorld,
+        setCheckBusiness,
+        setCheckSports } = location.state
+
+    
     //console.log(title)
     return(
+        
         <div className="px-36">
+            <Header2 
+            showPane={showPane}
+            setShowPane={setShowPane}
+            setCheckNational={setCheckNational}
+            setCheckWorld={setCheckWorld}
+            setCheckBusiness={setCheckBusiness}
+            setCheckSports={setCheckSports}/>
             <div className="py-6 flex-col">
                     <div className="text-4xl text-left font-semibold mb-3">
                             {currentNews.title}

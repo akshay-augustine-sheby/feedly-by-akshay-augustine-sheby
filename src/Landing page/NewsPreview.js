@@ -6,8 +6,21 @@ const MAX_LENGTH=300
 
 const NewsPreview = ({
     cat,
-    news
+    news,
+    showPane,
+    setShowPane,
+    setCheckNational,
+    setCheckWorld,
+    setCheckBusiness,
+    setCheckSports
 }) => {
+    /*console.log(JSON.stringify(setShowPane))
+    const setShowPane2 = JSON.parse(JSON.stringify(setShowPane))
+    const setCheckNational2 = JSON.parse(JSON.stringify(setCheckNational))
+    const setCheckWorld2 = JSON.parse(JSON.stringify(setCheckWorld))
+    const setCheckBusiness2 = JSON.parse(JSON.stringify(setCheckBusiness))
+    const setCheckSports2 = JSON.parse(JSON.stringify(setCheckSports))   
+    */
     if(news.length>0){
     return(
     <div className="px-36">
@@ -39,7 +52,8 @@ const NewsPreview = ({
                             pathname: `/ArticlePage/${it.title}`,
                             state: {
                                 currentNews: {...it},
-                                newsData: news
+                                newsData: news,
+                                
                             }
                         }}>Read more</Link>
 
