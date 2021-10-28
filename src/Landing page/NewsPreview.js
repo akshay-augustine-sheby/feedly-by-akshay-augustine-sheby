@@ -1,19 +1,16 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Button } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
+import { FunContext } from "../Header/Filter2";
 const MAX_LENGTH=300
 
 
 const NewsPreview = ({
     cat,
     news,
-    showPane,
-    setShowPane,
-    setCheckNational,
-    setCheckWorld,
-    setCheckBusiness,
-    setCheckSports
+    showPane
 }) => {
+    
     /*console.log(JSON.stringify(setShowPane))
     const setShowPane2 = JSON.parse(JSON.stringify(setShowPane))
     const setCheckNational2 = JSON.parse(JSON.stringify(setCheckNational))
@@ -53,7 +50,7 @@ const NewsPreview = ({
                             state: {
                                 currentNews: {...it},
                                 newsData: news,
-                                
+                                showPane: showPane
                             }
                         }}>Read more</Link>
 

@@ -1,17 +1,13 @@
-import React, { useState } from "react"
-import Filter2 from "./Filter2";
+import React, { useContext, useState } from "react"
+import Filter2, { FunContext } from "./Filter2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
+import { Link } from "react-router-dom";
 import { Button,Tooltip } from "@bigbinary/neetoui/v2";
 import { Filter,Notification,Search } from "@bigbinary/neeto-icons";
 import FilterClick from "./FilterClick";
 import Subscribe from "./Subscribe";
 const Header2 = ({
-    showPane,
-    setShowPane,
-    setCheckNational,
-    setCheckWorld,
-    setCheckBusiness,
-    setCheckSports
+    showPane
 }) => {
     const checkNational = JSON.parse(localStorage.getItem("checkNational"))
     const checkWorld = JSON.parse(localStorage.getItem("checkWorld"))
@@ -19,12 +15,16 @@ const Header2 = ({
     const checkSports = JSON.parse(localStorage.getItem("checkSports"))
 
     const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
+
+    const { setShowPane, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports} = useContext(FunContext);
     return(
         <div>
             <div className="px-6 h-auto border-b">
             <Header
+                
                 actionBlock={
                 <div className="flex">
+                    <Link to = "/">Feed</Link>
                     <Tooltip
                         content="Search"
                         followCursor="horizontal"
