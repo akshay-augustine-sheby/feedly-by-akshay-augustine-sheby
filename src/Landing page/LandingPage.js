@@ -7,8 +7,10 @@ import { Filter } from "@bigbinary/neeto-icons";
 import Header2 from "../Header/Header2";
 import FilterEmpty from "./FilterEmpty";
 export const FunContext = React.createContext();
-const LandingPage = () => {
-    const [data,setData] = useState([])
+const LandingPage = ({data1}) => {
+    
+    
+    const [data,setData] = useState(data1)
     const [national,setNational] = useState([])
     const [world,setWorld] = useState([])
     const [business, setBusiness] = useState([])
@@ -18,20 +20,35 @@ const LandingPage = () => {
     const [checkBusiness, setCheckBusiness] = useState(true)
     const [checkSports, setCheckSports] = useState(true)
     const [showPane, setShowPane] = useState(false)
-
+    console.log(data)
+    //setData(fetchData1)
+    if(data===undefined) 
+            {setData(JSON.parse(localStorage.getItem("data")))
+            setCheckNational(JSON.parse(localStorage.getItem("checkNational")))
+            setCheckWorld(JSON.parse(localStorage.getItem("checkWorld")))
+            setCheckBusiness(JSON.parse(localStorage.getItem("checkBusiness")))
+            setCheckSports(JSON.parse(localStorage.getItem("checkSports")))
+        }
+    else{
+        localStorage.setItem("data",JSON.stringify(data))
+        localStorage.setItem("checkNational",JSON.stringify(checkNational))
+        localStorage.setItem("checkWorld",JSON.stringify(checkWorld))
+        localStorage.setItem("checkBusiness",JSON.stringify(checkBusiness))
+        localStorage.setItem("checkSports",JSON.stringify(checkSports))
+    }
+    
     localStorage.setItem("national",JSON.stringify(national))
     localStorage.setItem("world",JSON.stringify(world))
     localStorage.setItem("business",JSON.stringify(business))
     localStorage.setItem("sports",JSON.stringify(sports))
 
-    localStorage.setItem("checkNational",JSON.stringify(checkNational))
-    localStorage.setItem("checkWorld",JSON.stringify(checkWorld))
-    localStorage.setItem("checkBusiness",JSON.stringify(checkBusiness))
-    localStorage.setItem("checkSports",JSON.stringify(checkSports))
+    
 
     
 
-    useEffect(()=>{
+    
+
+    /*useEffect(()=>{
         const fetchData = async(category)=>{
             const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
             const dat = await res.json()
@@ -47,8 +64,11 @@ const LandingPage = () => {
         fetchData("sports")
         
     },[])
+    */
     useEffect(()=>{
         //console.log(data)
+        
+        
         if(data.category==="national"){
             setNational(data["data"])
         }
