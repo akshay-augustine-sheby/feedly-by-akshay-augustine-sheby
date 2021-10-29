@@ -24,6 +24,7 @@ const LandingPage = ({data1}) => {
     //setData(fetchData1)
     if(data===undefined) 
             {setData(JSON.parse(localStorage.getItem("data")))
+            setShowPane(JSON.parse(localStorage.getItem("showPane")))
             setCheckNational(JSON.parse(localStorage.getItem("checkNational")))
             setCheckWorld(JSON.parse(localStorage.getItem("checkWorld")))
             setCheckBusiness(JSON.parse(localStorage.getItem("checkBusiness")))
@@ -35,6 +36,7 @@ const LandingPage = ({data1}) => {
         localStorage.setItem("checkWorld",JSON.stringify(checkWorld))
         localStorage.setItem("checkBusiness",JSON.stringify(checkBusiness))
         localStorage.setItem("checkSports",JSON.stringify(checkSports))
+        localStorage.setItem("showPane",JSON.stringify(showPane))
     }
     
     localStorage.setItem("national",JSON.stringify(national))

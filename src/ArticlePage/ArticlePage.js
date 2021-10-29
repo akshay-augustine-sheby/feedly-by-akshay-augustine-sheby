@@ -57,7 +57,11 @@ const ArticlePage = () => {
                                     size="large"
                                     label="Filter"
                                     icon={Filter}
-                                    onClick={()=>history.push("/LandingPage")}
+                                    onClick={()=>{
+                                        localStorage.setItem("showPane",JSON.stringify(true))
+                                        history.push("/LandingPage")
+                                    }
+                                    }
                                     style="secondary"
                                 />
               
