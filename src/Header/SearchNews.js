@@ -8,11 +8,12 @@ const SearchNews = ({
 }) => {
 const [searchVal,setSearchVal] = useState('')
 const [debouncedValue, setDebouncedValue] = useState('');
+
 useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(searchVal);
     }, 800);
-    
+
     return () => {
       clearTimeout(handler);
     };
