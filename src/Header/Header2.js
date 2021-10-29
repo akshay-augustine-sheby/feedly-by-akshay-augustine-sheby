@@ -7,16 +7,15 @@ import { Filter,Notification,Search } from "@bigbinary/neeto-icons";
 import FilterClick from "./FilterClick";
 import Subscribe from "./Subscribe";
 const Header2 = ({
-    showPane
+    showPane,
+    showModalExtraSmall
 }) => {
     const checkNational = JSON.parse(localStorage.getItem("checkNational"))
     const checkWorld = JSON.parse(localStorage.getItem("checkWorld"))
     const checkBusiness = JSON.parse(localStorage.getItem("checkBusiness"))
     const checkSports = JSON.parse(localStorage.getItem("checkSports"))
 
-    const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
-
-    const { setShowPane, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports} = useContext(FunContext);
+    const { setShowPane, setShowModalExtraSmall, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports} = useContext(FunContext);
     return(
         <div>
             <div className="px-6 h-auto border-b">

@@ -20,6 +20,7 @@ const LandingPage = ({data1}) => {
     const [checkBusiness, setCheckBusiness] = useState(true)
     const [checkSports, setCheckSports] = useState(true)
     const [showPane, setShowPane] = useState(false)
+    const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
     console.log(data)
     //setData(fetchData1)
     if(data===undefined) 
@@ -29,6 +30,7 @@ const LandingPage = ({data1}) => {
             setCheckWorld(JSON.parse(localStorage.getItem("checkWorld")))
             setCheckBusiness(JSON.parse(localStorage.getItem("checkBusiness")))
             setCheckSports(JSON.parse(localStorage.getItem("checkSports")))
+            setShowModalExtraSmall(JSON.parse(localStorage.getItem("showModalExtraSmall")))
         }
     else{
         localStorage.setItem("data",JSON.stringify(data))
@@ -37,6 +39,7 @@ const LandingPage = ({data1}) => {
         localStorage.setItem("checkBusiness",JSON.stringify(checkBusiness))
         localStorage.setItem("checkSports",JSON.stringify(checkSports))
         localStorage.setItem("showPane",JSON.stringify(showPane))
+        localStorage.setItem("showModalExtraSmall",JSON.stringify(showModalExtraSmall))
     }
     
     localStorage.setItem("national",JSON.stringify(national))
@@ -115,9 +118,10 @@ const LandingPage = ({data1}) => {
 
     return(
         <div>
-            <FunContext.Provider value={{setShowPane, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports}}>
+            <FunContext.Provider value={{setShowPane, setShowModalExtraSmall, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports}}>
             <Header2 
                     showPane={showPane}
+                    showModalExtraSmall={showModalExtraSmall}
                             />
             <div className="mt-11">
             <NewsPreview cat="National" news={national} 

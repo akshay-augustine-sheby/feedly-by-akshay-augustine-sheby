@@ -43,7 +43,10 @@ const ArticlePage = () => {
                         placement="bottom"
                         >
                         <Button
-                            onClick={function noRefCheck(){}}
+                            onClick={()=>{
+                                localStorage.setItem("showModalExtraSmall",JSON.stringify(true))
+                                history.push("/LandingPage")
+                            }}
                             size="large"
                             style="text"
                             icon={Notification}
