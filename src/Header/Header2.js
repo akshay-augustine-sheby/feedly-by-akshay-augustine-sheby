@@ -6,16 +6,19 @@ import { Button,Tooltip } from "@bigbinary/neetoui/v2";
 import { Filter,Notification,Search } from "@bigbinary/neeto-icons";
 import FilterClick from "./FilterClick";
 import Subscribe from "./Subscribe";
+import SearchNews from "./SearchNews";
 const Header2 = ({
     showPane,
-    showModalExtraSmall
+    showModalExtraSmall,
+    showModal
+    
 }) => {
     const checkNational = JSON.parse(localStorage.getItem("checkNational"))
     const checkWorld = JSON.parse(localStorage.getItem("checkWorld"))
     const checkBusiness = JSON.parse(localStorage.getItem("checkBusiness"))
     const checkSports = JSON.parse(localStorage.getItem("checkSports"))
 
-    const { setShowPane, setShowModalExtraSmall, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports} = useContext(FunContext);
+    const { setShowPane, setShowModalExtraSmall, setShowModal, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports} = useContext(FunContext);
     return(
         <div>
             <div className="px-6 h-auto border-b">
@@ -23,18 +26,24 @@ const Header2 = ({
                 
                 actionBlock={
                 <div className="flex">
+
                     <Tooltip
                         content="Search"
                         followCursor="horizontal"
                         placement="bottom"
                         >
                         <Button
-                            onClick={function noRefCheck(){}}
+                            onClick={() => setShowModal(true)}
                             size="large"
                             style="text"
                             icon={Search}
                         />
                     </Tooltip>
+                    <SearchNews
+                        showModal={showModal}
+                        setShowModal={setShowModal}
+                    />
+
                     <Tooltip
                         content="Subscribe"
                         followCursor="horizontal"
@@ -49,7 +58,9 @@ const Header2 = ({
                     </Tooltip>
                     <Subscribe 
                             showModalExtraSmall={showModalExtraSmall}
-                            setShowModalExtraSmall={setShowModalExtraSmall} />
+                            setShowModalExtraSmall={setShowModalExtraSmall} 
+                    />
+
                     <div className="space-y-6">
                         <div className="w-1/2 space-y-8">
                             <div className="flex flex-row items-center justify-start space-x-6">
@@ -77,9 +88,6 @@ const Header2 = ({
                             setCheckBusiness={setCheckBusiness}
                             checkSports={checkSports}
                             setCheckSports={setCheckSports}
-
-
-
                     />
                     
                 </div>

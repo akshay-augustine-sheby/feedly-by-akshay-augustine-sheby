@@ -21,59 +21,38 @@ const LandingPage = ({data1}) => {
     const [checkSports, setCheckSports] = useState(true)
     const [showPane, setShowPane] = useState(false)
     const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+
     console.log(data)
     //setData(fetchData1)
     if(data===undefined) 
             {setData(JSON.parse(localStorage.getItem("data")))
-            setShowPane(JSON.parse(localStorage.getItem("showPane")))
             setCheckNational(JSON.parse(localStorage.getItem("checkNational")))
             setCheckWorld(JSON.parse(localStorage.getItem("checkWorld")))
             setCheckBusiness(JSON.parse(localStorage.getItem("checkBusiness")))
             setCheckSports(JSON.parse(localStorage.getItem("checkSports")))
+            setShowPane(JSON.parse(localStorage.getItem("showPane")))
             setShowModalExtraSmall(JSON.parse(localStorage.getItem("showModalExtraSmall")))
+            setShowModal(JSON.parse(localStorage.getItem("showModal")))
         }
     else{
-        localStorage.setItem("data",JSON.stringify(data))
+        localStorage.setItem("data",[JSON.stringify(data)])
         localStorage.setItem("checkNational",JSON.stringify(checkNational))
         localStorage.setItem("checkWorld",JSON.stringify(checkWorld))
         localStorage.setItem("checkBusiness",JSON.stringify(checkBusiness))
         localStorage.setItem("checkSports",JSON.stringify(checkSports))
         localStorage.setItem("showPane",JSON.stringify(showPane))
         localStorage.setItem("showModalExtraSmall",JSON.stringify(showModalExtraSmall))
+        localStorage.setItem("showModal",JSON.stringify(showModal))
     }
     
-    localStorage.setItem("national",JSON.stringify(national))
+    /*localStorage.setItem("national",JSON.stringify(national))
     localStorage.setItem("world",JSON.stringify(world))
     localStorage.setItem("business",JSON.stringify(business))
-    localStorage.setItem("sports",JSON.stringify(sports))
+    localStorage.setItem("sports",JSON.stringify(sports))*/
 
-    
-
-    
-
-    
-
-    /*useEffect(()=>{
-        const fetchData = async(category)=>{
-            const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
-            const dat = await res.json()
-            
-            setData(dat)
-            
-
-            
-        }
-        fetchData("national")
-        fetchData("world")
-        fetchData("business")
-        fetchData("sports")
-        
-    },[])
-    */
     useEffect(()=>{
         //console.log(data)
-        
-        
         if(data.category==="national"){
             setNational(data["data"])
         }
@@ -87,8 +66,8 @@ const LandingPage = ({data1}) => {
             setSports(data["data"])
         }
     },[data])
-    useEffect(()=>{
 
+    useEffect(()=>{
         if(checkNational===false) setNational([])
         else {
             fetchAgain("national")
@@ -105,9 +84,6 @@ const LandingPage = ({data1}) => {
         else {
             fetchAgain("sports")
         }
-
-    
-
     },[checkNational,checkWorld,checkBusiness,checkSports])
 
     const fetchAgain = async(category)=>{
@@ -118,10 +94,12 @@ const LandingPage = ({data1}) => {
 
     return(
         <div>
-            <FunContext.Provider value={{setShowPane, setShowModalExtraSmall, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports}}>
+            <FunContext.Provider value={{setShowPane, setShowModalExtraSmall, setShowModal, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports}}>
             <Header2 
                     showPane={showPane}
                     showModalExtraSmall={showModalExtraSmall}
+                    showModal={showModal}
+
                             />
             <div className="mt-11">
             <NewsPreview cat="National" news={national} 
