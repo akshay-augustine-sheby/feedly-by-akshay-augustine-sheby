@@ -23,6 +23,7 @@ const [business, setBusiness] = useState([])
 const [sports, setSports] = useState([])
 //const [fetchCategory, setFetchCategory] = useState([])
 const fetchCategory = []
+const categoryData = []
 
 useEffect(() => {
     const handler = setTimeout(() => {
@@ -61,10 +62,23 @@ useEffect(()=>{
 
 },[])
 
-if(checkNational) fetchCategory.push("national")
-if(checkWorld) fetchCategory.push("world")
-if(checkBusiness) fetchCategory.push("business")
-if(checkSports) fetchCategory.push("sports")
+
+if(checkNational) {
+  fetchCategory.push("national")
+  categoryData.push(national)
+  }
+if(checkWorld) {
+  fetchCategory.push("world")
+  categoryData.push(world)
+}
+if(checkBusiness) {
+  fetchCategory.push("business")
+  categoryData.push(business)
+}
+if(checkSports) {
+  fetchCategory.push("sports")
+  categoryData.push(sports)
+}
 
 
 
@@ -84,9 +98,8 @@ else if(fetchData.category==="sports"){
 },[fetchData])
 
 
-
-
 console.log(fetchCategory)
+
 
 return (
   <div className="w-full">
@@ -96,11 +109,11 @@ return (
       <Modal.Body>
         <Input label="" size="large" value={searchVal} onChange={handleChange} placeholder="Search for an article." prefix={<i className="ri-search-line pr-2" />} />
         <div className="flex flex-col">
-          {[national, world, business, sports].map((cat)=>{
+          {categoryData.map((cat)=>{
             return(
             cat.map((it)=>{
               //console.log(it.title)
-              if((it.title.includes(debouncedValue) && debouncedValue!=""))
+              if((it.title.toLowerCase().includes(debouncedValue.toLowerCase()) && debouncedValue!=""))
               {
                 return(
                 <div className="bg-gray-200 mt-3 mb-3 p-2 text-indigo-600">
@@ -119,7 +132,6 @@ return (
             }
             
             )
-
 
           )})}
         </div>
