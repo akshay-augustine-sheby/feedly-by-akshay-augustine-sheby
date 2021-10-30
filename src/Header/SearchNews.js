@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Modal,Button,Typography,Input } from "@bigbinary/neetoui/v2";
 import { Check } from "@bigbinary/neeto-icons";
 import Debounce from "./Debounce";
+import FetchSearch from "../Components/FetchSearch";
 const SearchNews = ({
     showModal,
     setShowModal
@@ -31,9 +32,10 @@ return (
         setShowModal(false)
         setSearchVal('')}}>
       <Modal.Body>
-        <Input label="" size="large" value={searchVal} onChange={handleChange} placeholder="Search for an article." prefix={<i className="ri-search-line pr-2" />} />
+        <Input label="" size="large" value={debouncedValue} onChange={handleChange} placeholder="Search for an article." prefix={<i className="ri-search-line pr-2" />} />
       </Modal.Body>
     </Modal>
+    <FetchSearch debouncedValue={debouncedValue} />
   </div>
 );
 }
