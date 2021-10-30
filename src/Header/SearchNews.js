@@ -107,7 +107,11 @@ return (
         setShowModal(false)
         setSearchVal('')}}>
       <Modal.Body>
-        <Input label="" size="large" value={searchVal} onChange={handleChange} placeholder="Search for an article." prefix={<i className="ri-search-line pr-2" />} />
+        <div className="py-6">
+        <div>
+          <Input label="" size="large" value={searchVal} onChange={handleChange} placeholder="Search for an article." prefix={<i className="ri-search-line pr-2" />} />
+        </div>
+        
         <div className="flex flex-col">
           {categoryData.map((cat)=>{
             return(
@@ -116,9 +120,9 @@ return (
               if((it.title.toLowerCase().includes(debouncedValue.toLowerCase()) && debouncedValue!=""))
               {
                 return(
-                <div className="bg-gray-200 mt-3 mb-3 p-2 text-indigo-600">
+                <div className="bg-gray-200 mt-1 mb-1 p-5 text-indigo-600 rounded-xl">
                   <Link to={{
-                            pathname: `/ArticlePage/${it.title}`,
+                            pathname: `/ArticlePage/${it.title.replaceAll("%","")}`,
                             state: {
                                 currentNews: {...it},
                                 newsData: cat,
@@ -128,6 +132,7 @@ return (
                 </div>
                 )
               }
+              //else if(it.title.toLowerCase().includes(debouncedValue.toLowerCase())===false) return(<div>No</div>)
               else return(<div></div>)
             }
             
@@ -135,7 +140,7 @@ return (
 
           )})}
         </div>
-        
+        </div>
       </Modal.Body>
     </Modal>
     
