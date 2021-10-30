@@ -6,6 +6,7 @@ import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
 import { Filter } from "@bigbinary/neeto-icons";
 import Header2 from "../Header/Header2";
 import FilterEmpty from "./FilterEmpty";
+import axios from "axios";
 export const FunContext = React.createContext();
 const LandingPage = ({data1}) => {
     
@@ -87,8 +88,8 @@ const LandingPage = ({data1}) => {
     },[checkNational,checkWorld,checkBusiness,checkSports])
 
     const fetchAgain = async(category)=>{
-            const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
-            const dat = await res.json()
+            const res = await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
+            const dat = await res.data
             setData(dat)
         }
 

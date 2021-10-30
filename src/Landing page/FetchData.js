@@ -1,11 +1,12 @@
+import axios from "axios"
 import React, { useEffect, useState } from "react"
 import LandingPage from "./LandingPage"
 const FetchData = () => {
     const [data,setData] = useState([])
     useEffect(()=>{
         const fetchData = async(category)=>{
-            const res = await fetch(`https://inshortsapi.vercel.app/news?category=${category}`)
-            const dat = await res.json()
+            const res = await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
+            const dat = await res.data
             
             setData(dat)
             
