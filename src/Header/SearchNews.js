@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Modal,Button,Typography,Input } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
-import { Check } from "@bigbinary/neeto-icons";
+import { Search } from "@bigbinary/neeto-icons";
 import Debounce from "./Debounce";
 import axios from "axios";
 const SearchNews = ({
@@ -10,19 +10,16 @@ const SearchNews = ({
 }) => {
 const [searchVal,setSearchVal] = useState('')
 const [debouncedValue, setDebouncedValue] = useState('');
-
 const [checkNational,setCheckNational] = useState(true)
 const [checkWorld,setCheckWorld] = useState(true)
 const [checkBusiness, setCheckBusiness] = useState(true)
 const [checkSports, setCheckSports] = useState(true)
-
 const [fetchData, setFetchData] = useState([])
 const [national,setNational] = useState([])
 const [world,setWorld] = useState([])
 const [business, setBusiness] = useState([])
 const [sports, setSports] = useState([])
-//const [searchFound, setSearchFound] = useState(false)
-//const [fetchCategory, setFetchCategory] = useState([])
+
 const fetchCategory = []
 const categoryData = []
 let searchFound = false
@@ -31,14 +28,12 @@ useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(searchVal);
     }, 800);
+
     setCheckNational(JSON.parse(localStorage.getItem("checkNational")))
     setCheckWorld(JSON.parse(localStorage.getItem("checkWorld")))
     setCheckBusiness(JSON.parse(localStorage.getItem("checkBusiness")))
     setCheckSports(JSON.parse(localStorage.getItem("checkSports")))
-    /*if(checkNational) setFetchCategory([...fetchCategory,"national"])
-    if(checkWorld) setFetchCategory("world")
-    if(checkBusiness) setFetchCategory("business")
-    if(checkSports) setFetchCategory("sports")*/
+
     return () => {
       clearTimeout(handler);
     };
@@ -47,9 +42,8 @@ useEffect(() => {
 const handleChange = (e) => {
     setSearchVal(e.target.value)
 }
-console.log(`SearchVal: ${searchVal}`)
-console.log(`Debounced value: ${debouncedValue}`)
-
+//console.log(`SearchVal: ${searchVal}`)
+//console.log(`Debounced value: ${debouncedValue}`)
 
 useEffect(()=>{
   const fetchSearchData = async(category)=>{
@@ -63,7 +57,6 @@ useEffect(()=>{
   fetchSearchData("sports")
 
 },[])
-
 
 if(checkNational) {
   fetchCategory.push("national")
@@ -81,8 +74,6 @@ if(checkSports) {
   fetchCategory.push("sports")
   categoryData.push(sports)
 }
-
-
 
 useEffect(()=>{
   if(fetchData.category==="national"){
@@ -115,14 +106,14 @@ const markCategory = (cat)=>{
 
 
 return (
-  <div className="w-full">
+  <div>
     <Modal isOpen={showModal} onClose={() => {
         setShowModal(false)
         setSearchVal('')}}>
       <Modal.Body>
         <div className="py-6">
         <div>
-          <Input label="" size="large" value={searchVal} onChange={handleChange} placeholder="Search for an article." prefix={<i className="ri-search-line pr-2" />} />
+          <Input label="" size="large" value={searchVal} onChange={handleChange} placeholder="Search for an article." prefix={<Search size={16} />} />
         </div>
         
         <div className="flex flex-col">
