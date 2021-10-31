@@ -8,6 +8,7 @@ import Header2 from "../Header/Header2";
 import FilterEmpty from "./FilterEmpty";
 import axios from "axios";
 import FilterIcons from "./FilterIcons";
+import ErrorBoundary from "../ErrorBoundary";
 export const FunContext = React.createContext();
 const LandingPage = ({data1}) => {
     
@@ -24,6 +25,7 @@ const LandingPage = ({data1}) => {
     const [showPane, setShowPane] = useState(false)
     const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
     const [showModal, setShowModal] = useState(false);
+
 
     console.log(data)
     //setData(fetchData1)
@@ -55,6 +57,7 @@ const LandingPage = ({data1}) => {
 
     useEffect(()=>{
         //console.log(data)
+        
         if(data.category==="national"){
             setNational(data["data"])
         }
@@ -67,7 +70,12 @@ const LandingPage = ({data1}) => {
         else if(data.category==="sports"){
             setSports(data["data"])
         }
+        
+
+        
     },[data])
+
+    
 
     useEffect(()=>{
         if(checkNational===false) setNational([])
@@ -93,7 +101,6 @@ const LandingPage = ({data1}) => {
             const dat = await res.data
             setData(dat)
         }
-
     return(
         <div>
             <FunContext.Provider value={{setShowPane, setShowModalExtraSmall, setShowModal, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports}}>
@@ -110,7 +117,6 @@ const LandingPage = ({data1}) => {
                         checkSports={checkSports}
                          /> 
             </div>
-            
             <div className="mt-11 px-36">
             <NewsPreview cat="National" news={national} 
                             showPane={showPane} />
@@ -128,6 +134,7 @@ const LandingPage = ({data1}) => {
                         checkBusiness={checkBusiness}
                         checkSports={checkSports}
                          />
+            
             </div>
             </FunContext.Provider>
             

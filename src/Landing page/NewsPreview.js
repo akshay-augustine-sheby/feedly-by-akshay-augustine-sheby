@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { Button } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
 import { FunContext } from "./LandingPage";
+import ErrorBoundary from "../ErrorBoundary";
 const MAX_LENGTH=300
 
 
@@ -45,14 +46,19 @@ const NewsPreview = ({
                             {`${it.content.substring(0, MAX_LENGTH)}...`}
                         </div>
                         <div className="text-left text-indigo-600">
-                        <Link to={{
-                            pathname: `/ArticlePage/${it.title.replaceAll("%","")}`,
-                            state: {
-                                currentNews: {...it},
-                                newsData: news,
-                                showPane: showPane
-                            }
-                        }}>Read more</Link>
+
+                            <Link to={{
+                                pathname: `/ArticlePage/${it.title.replaceAll("%","")}`,
+                                state: {
+                                    currentNews: {...it},
+                                    newsData: news,
+                                    showPane: showPane
+                                }
+                            }}>Read more</Link>
+
+                        
+                        
+                        
 
                         </div>
 

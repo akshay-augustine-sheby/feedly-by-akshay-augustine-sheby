@@ -6,12 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import NewsPreview from './Landing page/NewsPreview';
 import ArticlePage from './ArticlePage/ArticlePage';
+import ErrorBoundary from './ErrorBoundary';
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <ErrorBoundary>
+    
+      <App />
+  </ErrorBoundary>
+  </BrowserRouter>
+  ,
   document.getElementById('root')
 );
 

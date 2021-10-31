@@ -6,6 +6,7 @@ import { Header } from "@bigbinary/neetoui/v2/layouts";
 import LandingPage, { FunContext } from "./Landing page/LandingPage";
 import { Copy,Filter,Notification,Search } from "@bigbinary/neeto-icons";
 import { useHistory } from 'react-router';
+import ErrorBoundary from "./ErrorBoundary"
 
 function App() {
   const history = useHistory();
@@ -13,6 +14,7 @@ function App() {
     <div className="App">  
       <Routes />
     </div>
+    
   );
 }
 
