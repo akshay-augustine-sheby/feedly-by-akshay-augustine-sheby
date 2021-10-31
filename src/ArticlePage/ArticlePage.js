@@ -1,21 +1,87 @@
 import React, { useContext } from "react"
-import { Link, useLocation, useParams } from "react-router-dom";
-import { Button } from "@bigbinary/neetoui/v2";
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import { Button, Tooltip } from "@bigbinary/neetoui/v2";
+import { Header } from "@bigbinary/neetoui/v2/layouts";
 import Header2 from "../Header/Header2";
-import { FunContext } from "../Header/Filter2";
-import { Copy } from "@bigbinary/neeto-icons";
+import { FunContext } from "../Landing page/LandingPage";
+import { Copy,Filter,Notification,Search } from "@bigbinary/neeto-icons";
+
 const ArticlePage = () => {
     const {title} = useParams();
     const location = useLocation();
     const { currentNews, newsData, showPane } = location.state
+    const history = useHistory();
+    //const {setShowPane} = useContext(FunContext);
     
 
     
     //console.log(title)
     return(
         
-        <div className="px-36">
-            <div className="py-6 flex-col">
+        <div>
+            
+            <div className="px-6 h-auto border-b">
+            <Header
+                
+                actionBlock={
+                <div className="flex">
+                    <Tooltip
+                        content="Search"
+                        followCursor="horizontal"
+                        placement="bottom"
+                        >
+                        <Button
+                            onClick={()=>{
+                                localStorage.setItem("showModal",JSON.stringify(true))
+                                history.push("/LandingPage")
+                            }}
+                            size="large"
+                            style="text"
+                            icon={Search}
+                        />
+                    </Tooltip>
+                    <Tooltip
+                        content="Subscribe"
+                        followCursor="horizontal"
+                        placement="bottom"
+                        >
+                        <Button
+                            onClick={()=>{
+                                localStorage.setItem("showModalExtraSmall",JSON.stringify(true))
+                                history.push("/LandingPage")
+                            }}
+                            size="large"
+                            style="text"
+                            icon={Notification}
+                        />
+                    </Tooltip>
+                    <div className="space-y-6">
+                        <div className="w-1/2 space-y-8">
+                            <div className="flex flex-row items-center justify-start space-x-6">
+                                <Button
+                                    iconPosition="right"
+                                    size="large"
+                                    label="Filter"
+                                    icon={Filter}
+                                    onClick={()=>{
+                                        localStorage.setItem("showPane",JSON.stringify(true))
+                                        history.push("/LandingPage")
+                                    }
+                                    }
+                                    style="secondary"
+                                />
+              
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                }    
+                title="Feed.ly"
+            />
+            </div>
+            <div className="py-6 mt-5 px-36 flex-col">
+
                     <div className="text-4xl text-left font-semibold mb-3">
                             {currentNews.title}
                             <Button
@@ -32,14 +98,14 @@ const ArticlePage = () => {
                     <div>
                         <img className="object-none object-right-top" src="https://picsum.photos/526/263" alt="No image"/>
                     </div>
-                    <div className="flex-col mt-5">
+                    <div className="flex-col mt-5 mb-9">
                         <div className="text-left text-sm">
                             {`${currentNews.content}`}
                         </div>
 
                     </div>
 
-            </div>
+            
             <div className="grid grid-cols-2 justify-between gap-x-72 border-t">
                 {newsData.map((it,index)=>{
                     if(index>=5 && index<=8){
@@ -73,6 +139,7 @@ const ArticlePage = () => {
                 })}
             </div>      
         </div>
+    </div>
     )
 }
 export default ArticlePage;
