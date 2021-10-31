@@ -20,7 +20,7 @@ const NewsPreview = ({
     */
     if(news.length>0){
     return(
-    <div className="px-36">
+    <div>
             <div className="text-xl text-left font-semibold">
                 {`${cat} News`}
             </div>

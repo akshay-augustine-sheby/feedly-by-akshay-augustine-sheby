@@ -7,6 +7,7 @@ import { Filter } from "@bigbinary/neeto-icons";
 import Header2 from "../Header/Header2";
 import FilterEmpty from "./FilterEmpty";
 import axios from "axios";
+import FilterIcons from "./FilterIcons";
 export const FunContext = React.createContext();
 const LandingPage = ({data1}) => {
     
@@ -100,9 +101,17 @@ const LandingPage = ({data1}) => {
                     showPane={showPane}
                     showModalExtraSmall={showModalExtraSmall}
                     showModal={showModal}
-
                             />
-            <div className="mt-11">
+
+            <div className="mt-11 px-36">
+            <FilterIcons checkNational={checkNational}
+                        checkWorld={checkWorld}
+                        checkBusiness={checkBusiness}
+                        checkSports={checkSports}
+                         /> 
+            </div>
+            
+            <div className="mt-11 px-36">
             <NewsPreview cat="National" news={national} 
                             showPane={showPane} />
             <NewsPreview cat="World" news={world} 
