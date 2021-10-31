@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Modal,Button,Typography,Input } from "@bigbinary/neetoui/v2";
 import { Check } from "@bigbinary/neeto-icons";
 import axios from 'axios'
+import image from "../Rectangle 252.png"
 import { setNestedObjectValues } from "formik";
 const Subscribe = ({
     showModalExtraSmall,
@@ -24,17 +25,8 @@ const Subscribe = ({
         size="xs"
       >
         <Modal.Header>
-          <div>
-          <svg width="256" height="220" viewBox="0 0 256 220" fill="none" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-<path d="M0 2C0 0.895429 0.895431 0 2 0H254C255.105 0 256 0.89543 256 2V220H0V2Z" fill="url(#pattern0)"/>
-<defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use href="#image0_4:3308" transform="translate(-0.144531) scale(0.00078125 0.000909091)"/>
-</pattern>
-<image id="image0_4:3308" width="1650" height="1100" href="data:image/png" />
-</defs>
-</svg>
-
+          <div className="mb-6">
+            <img src={image} alt="Subscribe image" />
           </div>
           <Typography style="h2">Subscribe to Feed.ly</Typography>
         </Modal.Header>
