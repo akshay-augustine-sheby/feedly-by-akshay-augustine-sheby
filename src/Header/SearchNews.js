@@ -21,9 +21,11 @@ const [national,setNational] = useState([])
 const [world,setWorld] = useState([])
 const [business, setBusiness] = useState([])
 const [sports, setSports] = useState([])
+//const [searchFound, setSearchFound] = useState(false)
 //const [fetchCategory, setFetchCategory] = useState([])
 const fetchCategory = []
 const categoryData = []
+let searchFound = false
 
 useEffect(() => {
     const handler = setTimeout(() => {
@@ -100,6 +102,17 @@ else if(fetchData.category==="sports"){
 
 console.log(fetchCategory)
 
+const notFound = (searchFound)=>{
+  if(!searchFound && debouncedValue!=="") return <div className="mt-5 mb-1 text-red-500 font-semibold">No results for "{`${debouncedValue}`}" </div>
+}
+
+const markCategory = (cat)=>{
+  if(cat===national) return(<div>- National News</div>)
+  else if(cat===world) return(<div>- World News</div>)
+  else if(cat===business) return(<div>- Business News</div>)
+  else if(cat===sports) return(<div>- Sports News</div>)
+}
+
 
 return (
   <div className="w-full">
@@ -118,9 +131,9 @@ return (
             cat.map((it)=>{
               //console.log(it.title)
               if((it.title.toLowerCase().includes(debouncedValue.toLowerCase()) && debouncedValue!=""))
-              {
+              { searchFound = true
                 return(
-                <div className="bg-gray-200 mt-1 mb-1 p-5 text-indigo-600 rounded-xl">
+                <div className="bg-gray-200 mt-1 mb-1 p-5 text-indigo-600 rounded-xl font-semibold">
                   <Link to={{
                             pathname: `/ArticlePage/${it.title.replaceAll("%","")}`,
                             state: {
@@ -129,16 +142,22 @@ return (
                                 showPane: false
                             }
                         }}>{`->> ${it.title}`}</Link>
+                  <div className="text-black text-right text-xs font-semibold">
+                    {markCategory(cat)}
+                  </div>
                 </div>
                 )
               }
-              //else if(it.title.toLowerCase().includes(debouncedValue.toLowerCase())===false) return(<div>No</div>)
               else return(<div></div>)
             }
             
             )
 
-          )})}
+          )})
+          }
+        </div>
+        <div> 
+          {notFound(searchFound)}
         </div>
         </div>
       </Modal.Body>
