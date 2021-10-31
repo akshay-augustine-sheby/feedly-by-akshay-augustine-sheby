@@ -46,7 +46,7 @@ const NewsPreview = ({
                         </div>
                         <div className="text-left text-indigo-600">
                         <Link to={{
-                            pathname: `/ArticlePage/${it.title}`,
+                            pathname: `/ArticlePage/${it.title.replaceAll("%","")}`,
                             state: {
                                 currentNews: {...it},
                                 newsData: news,
@@ -78,7 +78,7 @@ const NewsPreview = ({
                         </div>
                         <div className="text-left text-xs text-indigo-600">
                         <Link to={{
-                            pathname: `/ArticlePage/${it.title}`,
+                            pathname: `/ArticlePage/${it.title.replaceAll("%","")}`,
                             state: {
                                 currentNews: {...it},
                                 newsData: news,
