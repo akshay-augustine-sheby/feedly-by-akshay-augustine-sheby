@@ -129,7 +129,7 @@ const ArticlePage = () => {
                         </div>
                         <div className="text-left text-xs text-indigo-600">
                         <Link to={{
-                            pathname: `/ArticlePage/${it.title}`,
+                            pathname: `/ArticlePage/${it.title.replace(/[% ]/g,"")}`,
                             state: {
                                 currentNews: {...it},
                                 newsData: newsData,
