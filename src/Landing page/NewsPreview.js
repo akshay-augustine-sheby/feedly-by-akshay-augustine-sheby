@@ -99,7 +99,6 @@ const NewsPreview = ({
                             }
                         }}>Read more</Link>
                         </div>
-
                     </div>      
                 </div>
                         )
