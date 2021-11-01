@@ -12,7 +12,9 @@ const FilterClick= ({
     checkBusiness,
     setCheckBusiness,
     checkSports,
-    setCheckSports
+    setCheckSports,
+    archieve,
+    setArchieve
 }) => {
     
     useEffect(()=>{
@@ -20,12 +22,14 @@ const FilterClick= ({
         setCheckWorld2(checkWorld)
         setCheckBusiness2(checkBusiness)
         setCheckSports2(checkSports)
+        setArchieve2(archieve)
     },[showPane])
 
     const [checkNational2,setCheckNational2] = useState(true)
     const [checkWorld2,setCheckWorld2] = useState(true)
     const [checkBusiness2, setCheckBusiness2] = useState(true)
     const [checkSports2, setCheckSports2] = useState(true)
+    const [archieve2, setArchieve2] = useState(false)
 
     const handleSave=()=>{
         setShowPane(false)
@@ -33,6 +37,7 @@ const FilterClick= ({
         setCheckWorld(checkWorld2)
         setCheckBusiness(checkBusiness2)
         setCheckSports(checkSports2)
+        setArchieve(archieve2)
     }
     
     return (
@@ -68,6 +73,11 @@ const FilterClick= ({
                 name="Sports"
                 checked={checkSports2}
                 onChange={e => setCheckSports2(e.target.checked)} 
+            />
+            <Check2    
+                name="Include archived articles"
+                checked={archieve2}
+                onChange={e => setArchieve2(e.target.checked)} 
             />
           </Pane.Body>
           <Pane.Footer className="flex items-center space-x-2">

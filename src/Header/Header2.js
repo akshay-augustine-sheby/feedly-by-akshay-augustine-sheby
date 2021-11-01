@@ -10,9 +10,12 @@ import SearchNews from "./SearchNews";
 const Header2 = ({
     showPane,
     showModalExtraSmall,
-    showModal
+    showModal,
+    archieve,
+    setArchieve
     
 }) => {
+
     const checkNational = JSON.parse(localStorage.getItem("checkNational"))
     const checkWorld = JSON.parse(localStorage.getItem("checkWorld"))
     const checkBusiness = JSON.parse(localStorage.getItem("checkBusiness"))
@@ -88,6 +91,8 @@ const Header2 = ({
                             setCheckBusiness={setCheckBusiness}
                             checkSports={checkSports}
                             setCheckSports={setCheckSports}
+                            archieve = {archieve}
+                            setArchieve = {setArchieve}
                     />
                     
                 </div>

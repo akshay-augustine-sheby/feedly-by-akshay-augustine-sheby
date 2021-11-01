@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Button } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
 import { FunContext } from "./LandingPage";
@@ -9,25 +9,41 @@ const MAX_LENGTH=300
 const NewsPreview = ({
     cat,
     news,
-    showPane
+    showPane,
+    archieve
 }) => {
-    
-    /*console.log(JSON.stringify(setShowPane))
-    const setShowPane2 = JSON.parse(JSON.stringify(setShowPane))
-    const setCheckNational2 = JSON.parse(JSON.stringify(setCheckNational))
-    const setCheckWorld2 = JSON.parse(JSON.stringify(setCheckWorld))
-    const setCheckBusiness2 = JSON.parse(JSON.stringify(setCheckBusiness))
-    const setCheckSports2 = JSON.parse(JSON.stringify(setCheckSports))   
-    */
+
+   let news2 = []
+        if(archieve===true){
+            news.map((it)=>{
+                let arr = it.date.split(",")
+                const date = new Date(arr[0])
+                const today = new Date()
+                today.setHours(0,0,0,0);
+                //console.log(`old: ${date}`)
+                //console.log(`today: ${today}`)
+                if((date < today) && (date != today)) {
+                    news2.push(it)
+                }
+            })
+        }
+  
+        else if(archieve===false){
+            //setNews2(news)
+            news2 = news
+        }
+        //console.log(`news2: ${news2}`)
+
     if(news.length>0){
     return(
+        
     <div>
             <div className="text-xl text-left font-semibold">
                 {`${cat} News`}
             </div>
             <div>
             
-            {news.map((it,index)=>{
+            {news2.map((it,index)=>{
                 if(index===0){
                 return(
                 
@@ -51,24 +67,18 @@ const NewsPreview = ({
                                 pathname: `/ArticlePage/${it.title.replaceAll("%","")}`,
                                 state: {
                                     currentNews: {...it},
-                                    newsData: news,
+                                    newsData: news2,
                                     showPane: showPane
                                 }
                             }}>Read more</Link>
-
-                        
-                        
-                        
-
                         </div>
-
                     </div>      
                 </div>
                 )
                 }
             })}
             <div className="grid grid-cols-2 justify-between gap-x-72 border-b border-t">
-                {news.map((it,index)=>{
+                {news2.map((it,index)=>{
                     if(index>=1 && index<=4){
                         return(
                 <div className="py-6 flex justify-around gap-x-3">
@@ -87,7 +97,7 @@ const NewsPreview = ({
                             pathname: `/ArticlePage/${it.title.replaceAll("%","")}`,
                             state: {
                                 currentNews: {...it},
-                                newsData: news,
+                                newsData: news2,
                                 showPane: showPane
                             }
                         }}>Read more</Link>

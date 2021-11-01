@@ -22,6 +22,7 @@ const LandingPage = ({data1}) => {
     const [checkWorld,setCheckWorld] = useState(true)
     const [checkBusiness, setCheckBusiness] = useState(true)
     const [checkSports, setCheckSports] = useState(true)
+    const [archieve, setArchieve] = useState(false)
     const [showPane, setShowPane] = useState(false)
     const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -38,6 +39,7 @@ const LandingPage = ({data1}) => {
             setShowPane(JSON.parse(localStorage.getItem("showPane")))
             setShowModalExtraSmall(JSON.parse(localStorage.getItem("showModalExtraSmall")))
             setShowModal(JSON.parse(localStorage.getItem("showModal")))
+            setArchieve(JSON.parse(localStorage.getItem("archieve")))
         }
     else{
         localStorage.setItem("data",[JSON.stringify(data)])
@@ -48,6 +50,8 @@ const LandingPage = ({data1}) => {
         localStorage.setItem("showPane",JSON.stringify(showPane))
         localStorage.setItem("showModalExtraSmall",JSON.stringify(showModalExtraSmall))
         localStorage.setItem("showModal",JSON.stringify(showModal))
+        localStorage.setItem("archieve",JSON.stringify(archieve))
+
     }
     
     /*localStorage.setItem("national",JSON.stringify(national))
@@ -108,6 +112,8 @@ const LandingPage = ({data1}) => {
                     showPane={showPane}
                     showModalExtraSmall={showModalExtraSmall}
                     showModal={showModal}
+                    archieve = {archieve}
+                    setArchieve = {setArchieve}
                             />
 
             <div className="mt-11 px-36">
@@ -119,15 +125,20 @@ const LandingPage = ({data1}) => {
             </div>
             <div className="mt-11 px-36">
             <NewsPreview cat="National" news={national} 
-                            showPane={showPane} />
+                            showPane={showPane}
+                            archieve = {archieve} 
+                            />
             <NewsPreview cat="World" news={world} 
                            showPane={showPane}
+                           archieve = {archieve}
                            />
             <NewsPreview cat="Business" news={business} 
                            showPane={showPane}
+                           archieve = {archieve}
                            />
             <NewsPreview cat="Sports" news={sports} 
                            showPane={showPane}
+                           archieve = {archieve}
                            />
             <FilterEmpty checkNational={checkNational}
                         checkWorld={checkWorld}
