@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { Modal,Button,Typography,Input } from "@bigbinary/neetoui/v2";
+import { Modal,Input } from "@bigbinary/neetoui/v2";
 import { Link } from "react-router-dom";
 import { Search } from "@bigbinary/neeto-icons";
-import Debounce from "./Debounce";
 import axios from "axios";
 const SearchNews = ({
     showModal,
@@ -121,7 +120,7 @@ return (
             return(
             cat.map((it)=>{
               //console.log(it.title)
-              if((it.title.toLowerCase().includes(debouncedValue.toLowerCase()) && debouncedValue!=""))
+              if((it.title.toLowerCase().includes(debouncedValue.toLowerCase()) && debouncedValue!==""))
               { searchFound = true
                 return(
                 <div className="bg-gray-200 mt-1 mb-1 p-5 text-indigo-600 rounded-xl font-semibold">

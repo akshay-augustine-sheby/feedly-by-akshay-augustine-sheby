@@ -1,8 +1,5 @@
-import React, { useContext, useEffect, useState } from "react"
-import { Button } from "@bigbinary/neetoui/v2";
+import React from "react"
 import { Link } from "react-router-dom";
-import { FunContext } from "./LandingPage";
-import ErrorBoundary from "../ErrorBoundary";
 const MAX_LENGTH=300
 
 
@@ -22,7 +19,7 @@ const NewsPreview = ({
                 today.setHours(0,0,0,0);
                 //console.log(`old: ${date}`)
                 //console.log(`today: ${today}`)
-                if((date < today) && (date != today)) {
+                if((date < today) && (date !== today)) {
                     news2.push(it)
                 }
             })
@@ -34,7 +31,7 @@ const NewsPreview = ({
         }
         //console.log(`news2: ${news2}`)
 
-    if(news.length>0){
+    if(news2.length>0){
     return(
         
     <div>

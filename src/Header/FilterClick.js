@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react"
-import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
+import { Pane, Typography, Button } from "@bigbinary/neetoui/v2";
 import { Check } from "@bigbinary/neeto-icons";
 import Check2 from "./Check";
 const FilterClick= ({
@@ -74,11 +74,14 @@ const FilterClick= ({
                 checked={checkSports2}
                 onChange={e => setCheckSports2(e.target.checked)} 
             />
+            <div className="border-t mt-5">
             <Check2    
                 name="Include archived articles"
                 checked={archieve2}
                 onChange={e => setArchieve2(e.target.checked)} 
             />
+            </div>
+            
           </Pane.Body>
           <Pane.Footer className="flex items-center space-x-2">
             <Button

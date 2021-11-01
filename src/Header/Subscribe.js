@@ -1,9 +1,7 @@
 import React, { useState } from "react"
 import { Modal,Button,Typography,Input } from "@bigbinary/neetoui/v2";
-import { Check } from "@bigbinary/neeto-icons";
 import axios from 'axios'
 import image from "../Rectangle 252.png"
-import { setNestedObjectValues } from "formik";
 const Subscribe = ({
     showModalExtraSmall,
     setShowModalExtraSmall

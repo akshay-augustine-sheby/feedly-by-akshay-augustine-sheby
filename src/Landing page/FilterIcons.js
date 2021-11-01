@@ -5,14 +5,16 @@ const FilterIcons = ({
     checkNational,
     checkWorld,
     checkBusiness,
-    checkSports
+    checkSports,
+    archieve
 }) => {
     
     const categObj = {
         "National":checkNational,
         "World":checkWorld,
         "Business":checkBusiness,
-        "Sports":checkSports
+        "Sports":checkSports,
+        "Archived": archieve
     }
     const categ = Object.keys(categObj)
     

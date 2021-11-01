@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react"
 import NewsPreview from "./NewsPreview"
-import Check from "../Header/Check"
-import FilterClick from "../Header/FilterClick"
-import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
-import { Filter } from "@bigbinary/neeto-icons";
 import Header2 from "../Header/Header2";
 import FilterEmpty from "./FilterEmpty";
 import axios from "axios";
 import FilterIcons from "./FilterIcons";
-import ErrorBoundary from "../ErrorBoundary";
 export const FunContext = React.createContext();
 const LandingPage = ({data1}) => {
     
@@ -121,6 +116,7 @@ const LandingPage = ({data1}) => {
                         checkWorld={checkWorld}
                         checkBusiness={checkBusiness}
                         checkSports={checkSports}
+                        archieve={archieve}
                          /> 
             </div>
             <div className="mt-11 px-36">

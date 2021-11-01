@@ -1,28 +1,17 @@
-import React, { useContext } from "react"
-import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import React from "react"
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { Button, Tooltip } from "@bigbinary/neetoui/v2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
-import Header2 from "../Header/Header2";
-import { FunContext } from "../Landing page/LandingPage";
 import { Copy,Filter,Notification,Search,Home } from "@bigbinary/neeto-icons";
 import img from "../Group 2.svg"
 
 const ArticlePage = () => {
-    const {title} = useParams();
     const location = useLocation();
     const history = useHistory();
-    //if(location.state===undefined) return(<div>Nill</div>)
-    //else {
-    //const { currentNews, newsData, showPane } = location.state
-    //const {setShowPane} = useContext(FunContext);
     
     try {
         const { currentNews, newsData, showPane } = location.state
-    
-
-  
-    //console.log(title)
-    return(
+        return(
         
         <div>
             
