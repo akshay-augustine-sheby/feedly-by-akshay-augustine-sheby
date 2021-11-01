@@ -1,22 +1,17 @@
-import React, { useContext } from "react"
-import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import React from "react"
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { Button, Tooltip } from "@bigbinary/neetoui/v2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
-import Header2 from "../Header/Header2";
-import { FunContext } from "../Landing page/LandingPage";
-import { Copy,Filter,Notification,Search } from "@bigbinary/neeto-icons";
+import { Copy,Filter,Notification,Search,Home } from "@bigbinary/neeto-icons";
+import img from "../Group 2.svg"
 
 const ArticlePage = () => {
-    const {title} = useParams();
     const location = useLocation();
-    const { currentNews, newsData, showPane } = location.state
     const history = useHistory();
-    //const {setShowPane} = useContext(FunContext);
     
-
-    
-    //console.log(title)
-    return(
+    try {
+        const { currentNews, newsData, showPane } = location.state
+        return(
         
         <div>
             
@@ -96,11 +91,22 @@ const ArticlePage = () => {
                             {currentNews.author} at {currentNews.time} on {currentNews.date}    
                     </div>
                     <div>
-                        <img className="object-none object-right-top" src="https://picsum.photos/526/263" alt="No image"/>
+                        <img className="object-contain h-56 w-full" src="https://picsum.photos/526/263" alt="No image"/>
                     </div>
                     <div className="flex-col mt-5 mb-9">
                         <div className="text-left text-sm">
-                            {`${currentNews.content}`}
+                            <div>
+                                {`${currentNews.content}`}
+                            </div><br />
+                            <div>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ornare felis non magna imperdiet viverra. Duis ipsum elit, varius nec neque eu, blandit ullamcorper ipsum. Quisque magna eros, tristique a consectetur in, venenatis eget urna. Curabitur quam lectus, laoreet egestas vestibulum eu, ornare in tellus. Vivamus sodales ullamcorper egestas. Morbi egestas hendrerit felis sed lobortis. Sed et ullamcorper libero, id rutrum nunc.
+                            </div><br />
+                            <div>
+                                Vestibulum dapibus placerat varius. Sed interdum justo tempus, pulvinar mi vel, aliquam enim. Sed pretium maximus purus eu maximus. Donec id quam vitae lectus gravida scelerisque. Fusce ornare massa ac justo varius, eget tristique sem convallis. Quisque fringilla tincidunt sapien id fringilla. Integer auctor nisl non turpis elementum, sed sollicitudin est placerat. Curabitur scelerisque auctor orci, non auctor mauris molestie ut. In et rutrum magna, eget molestie nisi. Curabitur ultricies eget elit ac feugiat. Curabitur congue, odio a dapibus blandit, turpis ipsum pretium risus, vel facilisis magna eros imperdiet nisl. Praesent vulputate nunc vitae arcu pellentesque interdum.
+                            </div><br />
+                            <div>
+                                Phasellus vitae quam ac ligula lacinia egestas. Praesent auctor neque in justo maximus, id mollis felis commodo. Aenean id neque vel mauris ullamcorper vehicula quis ut leo. Fusce semper eleifend orci, id ullamcorper felis condimentum ac. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin aliquam blandit turpis et laoreet. Aenean velit dui, iaculis non accumsan pharetra, pulvinar sed felis. Integer tortor ante, aliquam a vulputate in, aliquet vel nisi.
+                            </div><br />
                         </div>
 
                     </div>
@@ -110,7 +116,7 @@ const ArticlePage = () => {
                 {newsData.map((it,index)=>{
                     if(index>=5 && index<=8){
                         return(
-                <div className="py-6 flex justify-around gap-x-3">
+                <div className="py-6 flex">
                     <div className="w-44">
                         <img src="https://picsum.photos/84/84" alt="No image"/>
                     </div>
@@ -141,5 +147,23 @@ const ArticlePage = () => {
         </div>
     </div>
     )
+} catch (error) {
+    console.log(error)
+    return(
+        <div className="mt-52">
+                <img className="object-none h-56 w-full" src={img} alt="No image" />
+                <h1 className="mt-7 mb-7">You have landed somewhere unknown.</h1>
+                <Button
+                                    iconPosition="left"
+                                    size="large"
+                                    label="Take me home"
+                                    icon={Home}
+                                    onClick={() => {history.push("/LandingPage")}}
+                                    style="secondary"
+                                />
+            </div>
+    )
+}
+            //}
 }
 export default ArticlePage;

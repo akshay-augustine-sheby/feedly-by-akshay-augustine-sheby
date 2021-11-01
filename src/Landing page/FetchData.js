@@ -4,6 +4,7 @@ import LandingPage from "./LandingPage"
 const FetchData = () => {
     const [data,setData] = useState([])
     useEffect(()=>{
+
         const fetchData = async(category)=>{
             const res = await axios.get(`https://inshortsapi.vercel.app/news?category=${category}`)
             const dat = await res.data
@@ -19,10 +20,13 @@ const FetchData = () => {
         fetchData("sports")
         
     },[])
+
+
     return(
         <div>
             <LandingPage data1={data}/>
         </div>
     )
+    
 }
 export default FetchData;

@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react"
 import NewsPreview from "./NewsPreview"
-import Check from "../Header/Check"
-import FilterClick from "../Header/FilterClick"
-import { Pane, Typography, Button,Checkbox } from "@bigbinary/neetoui/v2";
-import { Filter } from "@bigbinary/neeto-icons";
 import Header2 from "../Header/Header2";
 import FilterEmpty from "./FilterEmpty";
 import axios from "axios";
+import FilterIcons from "./FilterIcons";
 export const FunContext = React.createContext();
 const LandingPage = ({data1}) => {
     
@@ -20,9 +17,11 @@ const LandingPage = ({data1}) => {
     const [checkWorld,setCheckWorld] = useState(true)
     const [checkBusiness, setCheckBusiness] = useState(true)
     const [checkSports, setCheckSports] = useState(true)
+    const [archieve, setArchieve] = useState(false)
     const [showPane, setShowPane] = useState(false)
     const [showModalExtraSmall, setShowModalExtraSmall] = useState(false);
     const [showModal, setShowModal] = useState(false);
+
 
     console.log(data)
     //setData(fetchData1)
@@ -35,6 +34,7 @@ const LandingPage = ({data1}) => {
             setShowPane(JSON.parse(localStorage.getItem("showPane")))
             setShowModalExtraSmall(JSON.parse(localStorage.getItem("showModalExtraSmall")))
             setShowModal(JSON.parse(localStorage.getItem("showModal")))
+            setArchieve(JSON.parse(localStorage.getItem("archieve")))
         }
     else{
         localStorage.setItem("data",[JSON.stringify(data)])
@@ -45,6 +45,8 @@ const LandingPage = ({data1}) => {
         localStorage.setItem("showPane",JSON.stringify(showPane))
         localStorage.setItem("showModalExtraSmall",JSON.stringify(showModalExtraSmall))
         localStorage.setItem("showModal",JSON.stringify(showModal))
+        localStorage.setItem("archieve",JSON.stringify(archieve))
+
     }
     
     /*localStorage.setItem("national",JSON.stringify(national))
@@ -54,6 +56,7 @@ const LandingPage = ({data1}) => {
 
     useEffect(()=>{
         //console.log(data)
+        
         if(data.category==="national"){
             setNational(data["data"])
         }
@@ -66,7 +69,12 @@ const LandingPage = ({data1}) => {
         else if(data.category==="sports"){
             setSports(data["data"])
         }
+        
+
+        
     },[data])
+
+    
 
     useEffect(()=>{
         if(checkNational===false) setNational([])
@@ -92,7 +100,6 @@ const LandingPage = ({data1}) => {
             const dat = await res.data
             setData(dat)
         }
-
     return(
         <div>
             <FunContext.Provider value={{setShowPane, setShowModalExtraSmall, setShowModal, setCheckNational, setCheckWorld, setCheckBusiness, setCheckSports}}>
@@ -100,25 +107,41 @@ const LandingPage = ({data1}) => {
                     showPane={showPane}
                     showModalExtraSmall={showModalExtraSmall}
                     showModal={showModal}
-
+                    archieve = {archieve}
+                    setArchieve = {setArchieve}
                             />
-            <div className="mt-11">
+
+            <div className="mt-11 px-36">
+            <FilterIcons checkNational={checkNational}
+                        checkWorld={checkWorld}
+                        checkBusiness={checkBusiness}
+                        checkSports={checkSports}
+                        archieve={archieve}
+                         /> 
+            </div>
+            <div className="mt-11 px-36">
             <NewsPreview cat="National" news={national} 
-                            showPane={showPane} />
+                            showPane={showPane}
+                            archieve = {archieve} 
+                            />
             <NewsPreview cat="World" news={world} 
                            showPane={showPane}
+                           archieve = {archieve}
                            />
             <NewsPreview cat="Business" news={business} 
                            showPane={showPane}
+                           archieve = {archieve}
                            />
             <NewsPreview cat="Sports" news={sports} 
                            showPane={showPane}
+                           archieve = {archieve}
                            />
             <FilterEmpty checkNational={checkNational}
                         checkWorld={checkWorld}
                         checkBusiness={checkBusiness}
                         checkSports={checkSports}
                          />
+            
             </div>
             </FunContext.Provider>
             

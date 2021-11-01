@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react"
-import Filter2, { FunContext } from "../Landing page/LandingPage";
+import React, { useContext } from "react"
+import { FunContext } from "../Landing page/LandingPage";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
-import { Link } from "react-router-dom";
 import { Button,Tooltip } from "@bigbinary/neetoui/v2";
 import { Filter,Notification,Search } from "@bigbinary/neeto-icons";
 import FilterClick from "./FilterClick";
@@ -10,9 +9,12 @@ import SearchNews from "./SearchNews";
 const Header2 = ({
     showPane,
     showModalExtraSmall,
-    showModal
+    showModal,
+    archieve,
+    setArchieve
     
 }) => {
+
     const checkNational = JSON.parse(localStorage.getItem("checkNational"))
     const checkWorld = JSON.parse(localStorage.getItem("checkWorld"))
     const checkBusiness = JSON.parse(localStorage.getItem("checkBusiness"))
@@ -88,6 +90,8 @@ const Header2 = ({
                             setCheckBusiness={setCheckBusiness}
                             checkSports={checkSports}
                             setCheckSports={setCheckSports}
+                            archieve = {archieve}
+                            setArchieve = {setArchieve}
                     />
                     
                 </div>
